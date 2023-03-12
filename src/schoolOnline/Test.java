@@ -8,7 +8,8 @@ public class Test {
         Lection lection1 = LectionServe.lectionCreate();
         Lection lection2 = LectionServe.lectionCreate();
         Lection lection3 = LectionServe.lectionCreate();
-        Lection lection4m = LectionServe.lectionCreate();
+        Lection lection4 = LectionServe.lectionCreate();
+        Lection lection5 = LectionServe.lectionCreate();
         System.out.println("Lection number is " + Lection.lectionCount + ".");
     }
 }
