@@ -12,6 +12,7 @@
 
 # Additional added
 .idea
+out
 
 # Package Files #
 *.jar

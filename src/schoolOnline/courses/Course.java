@@ -1,6 +1,6 @@
 package schoolOnline.courses;
 
-import schoolOnline.lection.Lection;
+import schoolOnline.lecture.Lecture;
 import schoolOnline.lector.Lector;
 import schoolOnline.student.Student;
 
@@ -12,10 +12,10 @@ public class Course {
     private int id;
     int studentNumber = Student.studentCount;
     int lectorNumber = Lector.lectorCount;
-    int lectionNumber = Lection.lectionCount;
+    int lectureNumber = Lecture.lectureCount;
     ArrayList<Lector> lector;
     ArrayList<Student> student;
-    ArrayList<Lection> lection;
+    ArrayList<Lecture> lecture;
     Course(){
         courseCount++;
     }
