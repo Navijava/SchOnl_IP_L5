@@ -1,15 +1,15 @@
 package schoolOnline;
 
-import schoolOnline.lection.Lection;
-import schoolOnline.lection.LectionServe;
+import schoolOnline.lecture.Lecture;
+import schoolOnline.lecture.LectureServe;
 
 public class Test {
     public static void main(String [] arg){
-        Lection lection1 = LectionServe.lectionCreate();
-        Lection lection2 = LectionServe.lectionCreate();
-        Lection lection3 = LectionServe.lectionCreate();
-        Lection lection4 = LectionServe.lectionCreate();
-        Lection lection5 = LectionServe.lectionCreate();
-        System.out.println("Lection number is " + Lection.lectionCount + ".");
+        Lecture lecture1 = LectureServe.lectureCreate();
+        Lecture lecture2 = LectureServe.lectureCreate();
+        Lecture lecture3 = LectureServe.lectureCreate();
+        Lecture lecture4 = LectureServe.lectureCreate();
+        Lecture lecture5 = LectureServe.lectureCreate();
+        System.out.println("Lecture number is " + Lecture.lectureCount + ".");
     }
 }

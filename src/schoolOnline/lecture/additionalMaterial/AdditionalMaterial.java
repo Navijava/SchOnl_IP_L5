@@ -1,4 +1,4 @@
-package schoolOnline.lection.additionalMaterial;
+package schoolOnline.lecture.additionalMaterial;
 
 public class AdditionalMaterial {
     private int id;
