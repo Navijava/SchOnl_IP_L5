@@ -17,6 +17,9 @@ public class Course {
     ArrayList<Student> student;
     ArrayList<Lecture> lecture;
     Course(){
-        courseCount++;
+        this.id = ++courseCount;
+    }
+    public int getId(){
+        return this.id;
     }
 }
