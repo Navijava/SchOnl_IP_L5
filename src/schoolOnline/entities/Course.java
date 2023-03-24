@@ -1,8 +1,8 @@
-package schoolOnline.courses;
+package schoolOnline.entities;
 
-import schoolOnline.lecture.Lecture;
-import schoolOnline.lector.Lector;
-import schoolOnline.student.Student;
+import schoolOnline.entities.Lecture;
+import schoolOnline.entities.Lector;
+import schoolOnline.entities.Student;
 
 import java.util.ArrayList;
 
@@ -16,7 +16,7 @@ public class Course {
     ArrayList<Lector> lector;
     ArrayList<Student> student;
     ArrayList<Lecture> lecture;
-    Course(){
+    public Course(){
         this.id = ++courseCount;
     }
     public int getId(){

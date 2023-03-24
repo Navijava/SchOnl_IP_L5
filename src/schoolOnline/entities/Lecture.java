@@ -1,4 +1,4 @@
-package schoolOnline.lecture;
+package schoolOnline.entities;
 
 public class Lecture {
     public static int lectureCount;

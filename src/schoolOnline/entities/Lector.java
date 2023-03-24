@@ -1,10 +1,10 @@
-package schoolOnline.lector;
+package schoolOnline.entities;
 
 public class Lector {
     public static int lectorCount;
     private int id;
     String name;
-    Lector(){
+    public Lector(){
         lectorCount++;
     }
 }
