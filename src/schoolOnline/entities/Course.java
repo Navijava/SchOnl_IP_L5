@@ -7,7 +7,7 @@ import schoolOnline.entities.Student;
 import java.util.ArrayList;
 
 public class Course {
-    static int courseCount;
+    public static int courseCount;
     String courseName;
     private int id;
     int studentNumber = Student.studentCount;
@@ -15,7 +15,7 @@ public class Course {
     int lectureNumber = Lecture.lectureCount;
     ArrayList<Lector> lector;
     ArrayList<Student> student;
-    ArrayList<Lecture> lecture;
+    public ArrayList<Lecture> lecture;
     public Course(){
         this.id = ++courseCount;
     }
