@@ -1,4 +1,4 @@
-package schoolOnline.lecture;
+package schoolOnline.entities;
 
 public class Lecture {
     public static int lectureCount;
@@ -20,6 +20,9 @@ public class Lecture {
         this.name = name;
     }
     public String getName(){
+        return this.name;
+    }
+    public String toString(){
         return this.name;
     }
 }
