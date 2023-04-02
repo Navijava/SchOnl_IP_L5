@@ -1,10 +1,25 @@
 package schoolOnline.entities;
 
 public class Lector {
-    public static int lectorCount;
+    private static int lectorCount;
     private int id;
-    String name;
+    private String name;
     public Lector(){
         lectorCount++;
+    }
+    public static int getLectorCount(){
+        return lectorCount;
+    }
+    public void setId(int id){
+        this.id = id;
+    }
+    public int getId(){
+        return id;
+    }
+    public void setName(String name){
+        this.name = name;
+    }
+    public String getName(){
+        return name;
     }
 }

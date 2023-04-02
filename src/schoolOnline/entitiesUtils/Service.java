@@ -22,22 +22,22 @@ public class Service {
                 case 1:
                     for (int i = 0; i < courseRepository.courseRepository.length; i++) {
                         System.out.println("Number of lectures in course with id " + (i + 1) + " is " +
-                                courseRepository.courseRepository[i].lectureRepository.lectureAddedCount + ".");
+                                courseRepository.courseRepository[i].getLectureRepository().getLectureAddedCount() + ".");
                     }
                     System.out.println("Enter id of the course to see information about course (list of lectures id).");
                     int chosenCourseId = scan1.nextInt();
                     System.out.println("You choose course with id " + chosenCourseId + ". "
                             + courseRepository.courseRepository[chosenCourseId - 1]);
-                    courseRepository.courseRepository[chosenCourseId - 1].lectureRepository.showAllId();
+                    courseRepository.courseRepository[chosenCourseId - 1].getLectureRepository().showAllId();
                     break;
 
                 case 2:
 
                     System.out.println("Information about all available lectures in all courses:");
                     for (int i = 0; i < courseRepository.courseRepository.length; i++) {
-                        if (courseRepository.courseRepository[i].lectureRepository.lectureRepository.length != 0) {
+                        if (courseRepository.courseRepository[i].getLectureRepository().getLectureRepository().length != 0) {
                             System.out.println("Course id - " + (i + 1) + ", and its lectures:");
-                            courseRepository.courseRepository[i].lectureRepository.showAllId();
+                            courseRepository.courseRepository[i].getLectureRepository().showAllId();
                         }
                     }
                     break;
@@ -58,13 +58,13 @@ public class Service {
                     System.out.println("All information about course and available lectures:");
                     for (int i = 0; i < courseRepository.courseRepository.length; i++) {
                         System.out.println("Number of lectures in course with id " + (i + 1) + " is "
-                                + courseRepository.courseRepository[i].lectureRepository.lectureAddedCount + ".");
+                                + courseRepository.courseRepository[i].getLectureRepository().getLectureAddedCount() + ".");
                     }
                     System.out.println("Information about all available lectures in all courses:");
                     for (int i = 0; i < courseRepository.courseRepository.length; i++) {
-                        if (courseRepository.courseRepository[i].lectureRepository.lectureRepository.length != 0) {
+                        if (courseRepository.courseRepository[i].getLectureRepository().getLectureRepository().length != 0) {
                             System.out.println("Course id - " + (i + 1) + ", and its lectures:");
-                            courseRepository.courseRepository[i].lectureRepository.showAllId();
+                            courseRepository.courseRepository[i].getLectureRepository().showAllId();
                         }
                     }
                     break;

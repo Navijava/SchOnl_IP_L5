@@ -11,8 +11,14 @@ public class LectureRepository {
     public LectureRepository(int capacity){
         this.lectureRepository = new Lecture[capacity];
     }
-    public Lecture[] lectureRepository;
-    public int lectureAddedCount = 0;
+    private Lecture[] lectureRepository;
+    private int lectureAddedCount = 0;
+    public Lecture [] getLectureRepository(){
+        return lectureRepository;
+    }
+    public int getLectureAddedCount(){
+        return lectureAddedCount;
+    }
     public void addLecture(Lecture lecture){
         lectureAddedCount++;
         if(!checkSpace()){

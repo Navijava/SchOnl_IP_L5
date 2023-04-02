@@ -1,11 +1,10 @@
 package schoolOnline.entities;
 
 public class Lecture {
-    public static int lectureCount;
+    private static int lectureCount;
     private int id;
-    public int courseId;
+    private int courseId;
     private String name;
-    int quantity;
     public Lecture(){
         this.id = ++lectureCount;
     }
@@ -22,6 +21,13 @@ public class Lecture {
     public String getName(){
         return this.name;
     }
+    public static int getLectureCount(){
+        return lectureCount;
+    }
+    public int getCourseId(){
+        return courseId;
+    }
+
     public String toString(){
         return this.name;
     }
