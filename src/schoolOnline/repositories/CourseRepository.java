@@ -3,7 +3,7 @@ package schoolOnline.repositories;
 import schoolOnline.entities.Course;
 import schoolOnline.entities.Lecture;
 
-public class CourseRepository {
+public class CourseRepository  {
     public CourseRepository(){
         this.courseRepository = new Course[16];
     }
@@ -35,6 +35,39 @@ public class CourseRepository {
         }
         return courseRepositoryRes;
     }
+
+    public Lecture getById(int id) {
+        for(int i = 0; i < courseRepository.length; i++){
+            if (courseRepository[i].getLectureRepository().getById(id) != null) {
+                return courseRepository[i].getLectureRepository().getById(id);
+            }
+//            for(int j = 0; j < courseRepository[i].getLectureRepository().getAll().length; j++){
+//                if(courseRepository[i].getLectureRepository().getAll()[j] != null && courseRepository[i].getLectureRepository().getAll()[j].getId() == id){
+//                    return courseRepository[i].getLectureRepository().getAll()[j];
+//                }
+//            }
+
+        }
+        return null;
+    }
+    public boolean deleteById(int id) {
+        for(int i = 0; i < courseRepository.length; i++){
+            if (courseRepository[i].getLectureRepository().deleteById(id)){
+                return true;
+            }
+//            for(int j = 0; j < courseRepository[i].getLectureRepository().getAll().length; j++){
+//                if(courseRepository[i].getLectureRepository().getAll()[j] != null && courseRepository[i].getLectureRepository().getAll()[j].getId() == id){
+//                    courseRepository[i].getLectureRepository().
+//                            setLectureAddedCount(
+//                                    courseRepository[i].getLectureRepository().getLectureAddedCount() - 1);
+//                    courseRepository[i].getLectureRepository().getAll()[j] = null;
+//                    return true;
+//                }
+//            }
+        }
+        return false;
+    }
+
     public String toString(){
         String result = "";
         for(int i = 0; i < courseRepository.length; i++){

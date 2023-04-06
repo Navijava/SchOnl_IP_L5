@@ -1,11 +1,11 @@
 package schoolOnline.entities;
 
-public class Homework {
-    private int id;
-    public void setId(int id){
-        this.id = id;
+public class Homework extends Academy{
+    private int date;
+    public void setDate(int date){
+        this.date = date;
     }
-    public int getId() {
-        return id;
+    public int getDate(){
+        return date;
     }
 }

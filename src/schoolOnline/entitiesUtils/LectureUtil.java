@@ -21,7 +21,7 @@ public class LectureUtil {
         for (int i = 0; i < 3; i++) {
             Lecture newLecture = new Lecture(courseId);
             newLecture.setName("AutoLecture" + (i + 1));
-            courseRepository.courseRepository[courseId - 1].getLectureRepository().addLecture(newLecture);
+            courseRepository.courseRepository[courseId - 1].getLectureRepository().add(newLecture);
         }
         System.out.println("Possible to create " + (lectureLimit - Lecture.getLectureCount()) + " lectures.");
         do{
@@ -47,7 +47,7 @@ public class LectureUtil {
                 Lecture newLecture = new Lecture(courseId);
                 System.out.println("Enter name of new lecture.");
                 newLecture.setName(scan2.nextLine());
-                courseRepository.courseRepository[courseId - 1].getLectureRepository().addLecture(newLecture);
+                courseRepository.courseRepository[courseId - 1].getLectureRepository().add(newLecture);
                 System.out.println("Was created lecture named \"" + newLecture.getName() + "\", id " +
                         "of course for created lecture is - " + newLecture.getCourseId() + " and lectures id is - "
                         + newLecture.getId() + ".");

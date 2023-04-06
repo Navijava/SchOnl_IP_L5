@@ -2,50 +2,22 @@ package schoolOnline.repositories;
 
 import schoolOnline.entities.Lecture;
 
-import java.util.Arrays;
-
-public class LectureRepository {
+public class LectureRepository extends CommonRepository{
     public LectureRepository(){
         this.lectureRepository = new Lecture[16];
     }
     public LectureRepository(int capacity){
         this.lectureRepository = new Lecture[capacity];
     }
-    private Lecture[] lectureRepository;
-    private int lectureAddedCount = 0;
-    public Lecture [] getLectureRepository(){
-        return lectureRepository;
-    }
     public int getLectureAddedCount(){
         return lectureAddedCount;
     }
-    public void addLecture(Lecture lecture){
-        lectureAddedCount++;
-        if(!checkSpace()){
-            lectureRepository = increaseSpace();
-        }
-        for(int i = 0; i < lectureRepository.length; i++){
-                if(lectureRepository[i] == null) {
-                    lectureRepository[i] = lecture;
-                    return;
-                }
-        }
-    }
-    boolean checkSpace(){
-        for (int i = 0; i < lectureRepository.length; i++){
-            if(lectureRepository[i] == null) return true;
-        }
-        return false;
-    }
-    Lecture[] increaseSpace(){
-        Lecture [] lectureRepositoryRes = new Lecture[(lectureRepository.length * 3) / 2 + 1];
-        for(int i = 0; i < lectureRepository.length; i++){
-            lectureRepositoryRes[i] = lectureRepository[i];
-        }
-        return lectureRepositoryRes;
+    public void setLectureAddedCount(int lectureAddedCount){
+
+        this.lectureAddedCount = lectureAddedCount;
     }
     public void showAllId(){
-        String result = "";
+        String result = "\n";
         for (int i = 0; i < lectureRepository.length; i++){
             if(lectureRepository[i] != null) {
                 result = result + "lecture's id - " + + lectureRepository[i].getId() + ", and name - " + lectureRepository[i].getName() + "\n";
