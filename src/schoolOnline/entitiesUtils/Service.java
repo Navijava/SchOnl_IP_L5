@@ -1,12 +1,23 @@
 package schoolOnline.entitiesUtils;
 
 import schoolOnline.entities.Lecture;
+import schoolOnline.entities.Person;
+import schoolOnline.entities.Role;
 import schoolOnline.repositories.CourseRepository;
+import schoolOnline.repositories.LectorRepository;
 
 import java.util.Scanner;
 
 public class Service {
 
+    public static void createPersons(){
+
+        Person person1 = new Person(Role.STUDENT, 2);
+        Person person2 = new Person(Role.LECTOR, 1);
+        Person person3 = new Person();
+        System.out.println("\n" + person1 + "\n" + person2 + "\n" + person3 + "\n");
+
+    }
     public static void findInfo() {
 
         CourseRepository courseRepository = LectureUtil.lectureLimitedCreate_Lesson10r(8);
@@ -45,9 +56,10 @@ public class Service {
                     break;
 
                 case 3:
-                    System.out.println("Enter id of the lector.");
-                    int chosenLectorId = scan1.nextInt();
-                    System.out.println("You choose lector with id " + chosenLectorId + ".");
+//                    System.out.println("Enter id of the lector.");
+//                    int chosenLectorId = scan1.nextInt();
+//                    System.out.println("You choose lector with id " + chosenLectorId + ".");
+                    System.out.println(LectorRepository.allLectors());
                     break;
 
                 case 4:

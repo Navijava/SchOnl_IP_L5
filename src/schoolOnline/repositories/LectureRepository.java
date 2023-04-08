@@ -20,7 +20,9 @@ public class LectureRepository extends CommonRepository{
         String result = "\n";
         for (int i = 0; i < lectureRepository.length; i++){
             if(lectureRepository[i] != null) {
-                result = result + "lecture's id - " + + lectureRepository[i].getId() + ", and name - " + lectureRepository[i].getName() + "\n";
+                result = result + "lecture's id - " + + lectureRepository[i].getId()
+                        + ", and name - " + lectureRepository[i].getName()
+                        + ", and lector's name " + lectureRepository[i].getLector().getName() + "\n";
             }
         }
         if (result.equals("")) {
