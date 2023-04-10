@@ -3,6 +3,7 @@ package schoolOnline.entities;
 import schoolOnline.entities.Lecture;
 import schoolOnline.entities.Lector;
 import schoolOnline.entities.Student;
+import schoolOnline.repositories.LectureRepository;
 
 import java.util.ArrayList;
 
@@ -16,10 +17,14 @@ public class Course {
     ArrayList<Lector> lector;
     ArrayList<Student> student;
     public ArrayList<Lecture> lecture;
+    public LectureRepository lectureRepository;
     public Course(){
         this.id = ++courseCount;
     }
     public int getId(){
         return this.id;
+    }
+    public String toString(){
+        return "Course id is " + id + ".";
     }
 }
