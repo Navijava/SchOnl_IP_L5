@@ -47,6 +47,7 @@ public class CommonRepository {
         for(int i = 0; i < lectureRepository.length; i++){
             if(lectureRepository[i] != null && lectureRepository[i].getId() == id){
                 lectureAddedCount = lectureAddedCount - 1;
+                LectorRepository.deleteById(lectureRepository[i].getId());
                 lectureRepository[i] = null;
                 return true;
             }
