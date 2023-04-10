@@ -21,9 +21,9 @@ public class LectureUtil {
         for (int i = 0; i < 3; i++) {
             Lecture newLecture = new Lecture(courseId);
             newLecture.setName("AutoLecture" + (i + 1));
-            courseRepository.courseRepository[courseId - 1].lectureRepository.addLecture(newLecture);
+            courseRepository.courseRepository[courseId - 1].getLectureRepository().add(newLecture);
         }
-        System.out.println("Possible to create " + (lectureLimit - Lecture.lectureCount) + " lectures.");
+        System.out.println("Possible to create " + (lectureLimit - Lecture.getLectureCount()) + " lectures.");
         do{
            System.out.println("Choose course id where you wish to work. Possible id is between 1 and " +
                   courseRepository.courseRepository.length + ".");
@@ -33,11 +33,11 @@ public class LectureUtil {
                }
         } while(courseId < 1 || courseId > courseRepository.courseRepository.length);
         do {
-            System.out.println("Possible to create " + (lectureLimit - Lecture.lectureCount) + " lectures.");
-            if (lectureLimit == Lecture.lectureCount) {
+            System.out.println("Possible to create " + (lectureLimit - Lecture.getLectureCount()) + " lectures.");
+            if (lectureLimit == Lecture.getLectureCount()) {
                 System.out.println("Limit of " + lectureLimit + " lectures was reached, program "
-                        + "finishes it work. Number of all lectures is - " + Lecture.lectureCount + ". List of created "
-                        + "lectures: " + courseRepository.courseRepository[courseId - 1].lectureRepository + ".");
+                        + "finishes it work. Number of all lectures is - " + Lecture.getLectureCount() + ". List of created "
+                        + "lectures: " + courseRepository.courseRepository[courseId - 1].getLectureRepository() + ".");
                 System.exit(0);
             }
             System.out.println("Press 'y' to create new lecture or 'n' to skip.");
@@ -47,29 +47,29 @@ public class LectureUtil {
                 Lecture newLecture = new Lecture(courseId);
                 System.out.println("Enter name of new lecture.");
                 newLecture.setName(scan2.nextLine());
-                courseRepository.courseRepository[courseId - 1].lectureRepository.addLecture(newLecture);
+                courseRepository.courseRepository[courseId - 1].getLectureRepository().add(newLecture);
                 System.out.println("Was created lecture named \"" + newLecture.getName() + "\", id " +
-                        "of course for created lecture is - " + newLecture.courseId + " and lectures id is - "
+                        "of course for created lecture is - " + newLecture.getCourseId() + " and lectures id is - "
                         + newLecture.getId() + ".");
             } else if(create.equals("n")){
                 break;
             } else {
                 System.out.println("You've made incorrect choice. Number of all lectures is - " +
-                        Lecture.lectureCount);
+                        Lecture.getLectureCount());
                 System.exit(0);
             }
         }
         while(true);
-        System.out.println("Number of all lectures is - " + Lecture.lectureCount);
+        System.out.println("Number of all lectures is - " + Lecture.getLectureCount());
         return courseRepository;
     }
     static CourseRepository courseBaseCreate_Lesson10r(){
         int rand = new Random().nextInt(5, 10);
         Course courseTemp;
         CourseRepository courseRepository = new CourseRepository(rand);
-        for(int i = 0; Course.courseCount < rand; i++){
+        for(int i = 0; Course.getCourseCount() < rand; i++){
             courseTemp = new Course();
-            courseTemp.lectureRepository = new LectureRepository(0);
+            courseTemp.setLectureRepository(new LectureRepository(0));
             courseRepository.addCourse(courseTemp);
         }
         return courseRepository;

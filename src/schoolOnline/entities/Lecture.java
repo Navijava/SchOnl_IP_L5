@@ -1,11 +1,8 @@
 package schoolOnline.entities;
 
-public class Lecture {
-    public static int lectureCount;
-    private int id;
-    public int courseId;
-    private String name;
-    int quantity;
+public class Lecture extends Academy{
+    private static int lectureCount;
+    private int courseId;
     public Lecture(){
         this.id = ++lectureCount;
     }
@@ -13,16 +10,14 @@ public class Lecture {
         this.courseId = courseId;
         this.id = ++lectureCount;
     }
-    public int getId(){
-        return this.id;
+    public static int getLectureCount(){
+        return lectureCount;
     }
-    public void setName(String name){
-        this.name = name;
+    public int getCourseId(){
+        return courseId;
     }
-    public String getName(){
-        return this.name;
-    }
+
     public String toString(){
-        return this.name;
+        return name;
     }
 }
