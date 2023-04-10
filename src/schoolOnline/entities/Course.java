@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class Course extends Academy{
     private static int courseCount;
+    private String name;
     private int studentNumber = Student.getStudentCount();
     private int lectorNumber = Lector.getLectorCount();
     private int lectureNumber = Lecture.getLectureCount();
@@ -21,6 +22,12 @@ public class Course extends Academy{
     }
     public void setLectureRepository(LectureRepository lectureRepository){
         this.lectureRepository = lectureRepository;
+    }
+    public void setName(String name){
+        this.name = name;
+    }
+    public String getName(){
+        return this.name;
     }
     public LectureRepository getLectureRepository(){
         return lectureRepository;
