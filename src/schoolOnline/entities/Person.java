@@ -6,10 +6,44 @@ public class Person {
         this.role = role;
         this.courseId = courseId;
     }
+
+    private String firstname;
+    private String lastname;
+    private String phone;
+    private String email;
+
     private Role role;
     private int courseId;
 
     private int id;
+
+    public void setFirstname(String firstname){
+        this.firstname = firstname;
+    }
+    public String getFirstname(){
+        return this.firstname;
+    }
+
+    public void setLastname(String lastname){
+        this.lastname = lastname;
+    }
+    public String getLastname(){
+        return this.lastname;
+    }
+
+    public void setPhone(String phone){
+        this.phone = phone;
+    }
+    public String getPhone(){
+        return this.phone;
+    }
+
+    public void setEmail(String email){
+        this.email = email;
+    }
+    public String getEmail(){
+        return this.email;
+    }
 
     private String name;
     public void setName(String name){

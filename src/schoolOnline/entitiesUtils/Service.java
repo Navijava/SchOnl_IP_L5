@@ -10,6 +10,140 @@ import java.util.Scanner;
 
 public class Service {
 
+    public static void validation(Person person){
+        if(nameCheck(person.getFirstname())){
+            System.out.println("Firstname is correct.");
+        } else {
+            System.out.println("Incorrect Firstname.");
+            return;
+        }
+        if(nameCheck(person.getLastname())){
+            System.out.println("Lastname is correct.");
+        }else {
+            System.out.println("Incorrect lastname.");
+            return;
+        }
+        if(phoneCheck(person.getPhone())){
+            System.out.println("Phone has correct form.");
+        }else {
+            System.out.println("Incorrect phone.");
+            return;
+        }
+        if(emailCheck(person.getEmail())){
+            System.out.println("Email has correct form.");
+        }else {
+            System.out.println("Incorrect email.");
+            return;
+        }
+
+    }
+    public static boolean phoneCheck(String check){
+        check = check.replaceAll("-","");
+        if(check.length() < 10) {
+            return false;
+        }
+        String base = "";
+        for(int i = 48; i < 58; i ++){
+            base = base + (char) i;
+        }
+        char [] chArr = check.toCharArray();
+        for(int i = 0; i < chArr.length; i++){
+            if(!(base.contains("" + chArr[i]))){
+                return false;
+            }
+        }
+        return true;
+    }
+    public static boolean emailCheck(String check){
+        if(check.contains("@") && check.contains(".")){
+            return true;
+        }
+        return false;
+    }
+    public static boolean nameCheck(String check){
+        String base = "";
+        char [] chArr = check.toCharArray();
+        for(int i = 65; i < 91; i++){
+            base = base + (char) i + (char) (i + 32);
+        }
+        for(int i = 0; i < chArr.length; i++){
+            if(!(base.contains(chArr[i] + ""))){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void createValidPersons(){
+
+        String firstname = "Victoria";
+        String lastname = "Chub";
+        String phone = "050-123-45-67";
+        String email = "wow@wow.ua";
+
+        for(int i = 0; i < 5; i++){
+            Person prsn = new Person(Role.STUDENT, 2);
+            prsn.setFirstname("Victoria");
+            prsn.setLastname("Chub");
+            prsn.setPhone("050-123-45-67");
+            prsn.setEmail("wow@wow.ua");
+            if(i == 1) {
+                prsn.setFirstname("Victoria1");
+            }
+            if(i == 2) {
+                prsn.setLastname("Chub1");
+            }
+            if(i == 3) {
+                prsn.setPhone("050-123-45-6a");
+            }
+            if(i == 4) {
+                prsn.setEmail("wowwow.ua");
+            }
+            validation(prsn);
+            System.out.println();
+        }
+        /*
+        Person person1 = new Person(Role.STUDENT, 2);
+        person1.setFirstname("Victoria");
+        person1.setLastname("Chub");
+        person1.setPhone("050-123-45-67");
+        person1.setEmail("wow@wow.ua");
+        validation(person1);
+
+        Person person2 = new Person(Role.STUDENT, 2);
+        person2.setFirstname("Victoria1");
+        person2.setLastname("Chub");
+        person2.setPhone("050-123-45-67");
+        person2.setEmail("wow@wow.ua");
+        System.out.println();
+        validation(person2);
+
+        Person person3 = new Person(Role.STUDENT, 2);
+        person3.setFirstname("Victoria");
+        person3.setLastname("Chub1");
+        person3.setPhone("050-123-45-67");
+        person3.setEmail("wow@wow.ua");
+        System.out.println();
+        validation(person3);
+
+        Person person4 = new Person(Role.STUDENT, 2);
+        person4.setFirstname("Victoria");
+        person4.setLastname("Chub");
+        person4.setPhone("050-123-45-6a");
+        person4.setEmail("wow@wow.ua");
+        System.out.println();
+        validation(person4);
+
+        Person person5 = new Person(Role.STUDENT, 2);
+        person5.setFirstname("Victoria");
+        person5.setLastname("Chub");
+        person5.setPhone("050-123-45-67");
+        person5.setEmail("wowwow.ua");
+        System.out.println();
+        validation(person5);
+         */
+    }
+
     public static void createPersons(){
 
         Person person1 = new Person(Role.STUDENT, 2);
