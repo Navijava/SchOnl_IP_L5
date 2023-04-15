@@ -5,10 +5,79 @@ import schoolOnline.entities.Person;
 import schoolOnline.entities.Role;
 import schoolOnline.repositories.CourseRepository;
 import schoolOnline.repositories.LectorRepository;
+import schoolOnline.repositories.LectureRepository;
+import schoolOnline.repositories.TypedRepository;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Service {
+
+    public static void types(){
+        LectureRepository lectureRepository = new LectureRepository(3);
+        Lecture tempLecture;
+        for(int i = 0; i < 2; i++){
+            tempLecture = new Lecture(new Random().nextInt(1, 10));
+            tempLecture.setName("lecture" + (i + 1));
+            lectureRepository.add(tempLecture);
+
+        }
+        TypedRepository<Lecture> typedRepository = new TypedRepository<>(lectureRepository.getAll());
+
+        System.out.println("\n__________________________________________________________________________\n");
+        System.out.println("Empty? - " + typedRepository.isEmpty() + "\nSize? - " + typedRepository.size());
+
+        System.out.println("Trying to get by negative index - ");
+        typedRepository.get(-1);
+        System.out.println("Trying to get by too big index - ");
+        typedRepository.get(100);
+        System.out.println("Trying to get by null index - ");
+        typedRepository.get(2);
+        System.out.println("Trying to get by by correct index - " + typedRepository.get(1));
+        System.out.println("\n__________________________________________________________________________\n");
+
+        System.out.println("Before simple adding: \nSize - " + typedRepository.size() + "\nCapacity - " + typedRepository.capacity());
+        tempLecture = new Lecture(new Random().nextInt(1, 10));
+        tempLecture.setName("lectureAdded_1");
+        typedRepository.add(tempLecture);
+        tempLecture = new Lecture(new Random().nextInt(1, 10));
+        tempLecture.setName("lectureAdded_2");
+        typedRepository.add(tempLecture);
+        tempLecture = new Lecture(new Random().nextInt(1, 10));
+        tempLecture.setName("lectureAdded_3");
+        typedRepository.add(tempLecture);
+        System.out.println("After simple adding: \nSize - " + typedRepository.size() + "\nCapacity - " + typedRepository.capacity());
+        System.out.println("\n__________________________________________________________________________\n");
+
+        System.out.println("Before adding by index:\nSize - " + typedRepository.size()
+                + "\nCapacity - " + typedRepository.capacity());
+
+        tempLecture = new Lecture(new Random().nextInt(1, 10));
+        tempLecture.setName("lectureAdded_4");
+        typedRepository.add(2, tempLecture);
+
+        System.out.println("After adding by index:\nSize - " + typedRepository.size()
+                + "\nCapacity - " + typedRepository.capacity());
+        System.out.println("\n__________________________________________________________________________\n");
+
+        System.out.println("Remove by negative index , answer:");
+        typedRepository.remove(-10);
+        System.out.println("Remove by too big index, answer:");
+        typedRepository.remove(100);
+        System.out.println("Remove null object index, answer:");
+        typedRepository.remove(7);
+        System.out.println("Remove by correct index.");
+        typedRepository.remove(5);
+        //System.out.println("Negative index.");
+
+/*        for(int i = 0; i < typedRepository.capacity(); i++){
+            if(typedRepository.get(i) != null){
+                System.out.println(typedRepository.get(i).getName());
+            }
+        }*/
+
+
+    }
 
     public static void validation(Person person){
         if(nameCheck(person.getFirstname())){
