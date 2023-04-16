@@ -1,5 +1,6 @@
 package schoolOnline.entitiesUtils;
 
+import schoolOnline.entities.Homework;
 import schoolOnline.entities.Lecture;
 import schoolOnline.entities.Person;
 import schoolOnline.entities.Role;
@@ -12,6 +13,16 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Service {
+
+    public static void lectureWithHomework(){
+
+        final int courseId = 10;
+        Lecture lecture = new Lecture(courseId);
+        Homework homework1 = new Homework(lecture.getId(), "jump 10 times");
+        lecture.addHomework(homework1);
+        System.out.println(lecture.getHomeworkById(2) + "\n\n" + lecture.getHomeworkById(1));
+
+    }
 
     public static void types(){
         LectureRepository lectureRepository = new LectureRepository(3);

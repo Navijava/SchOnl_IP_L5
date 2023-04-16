@@ -1,13 +1,8 @@
 package schoolOnline.entities;
 
-public class Lecture extends Academy{
-    private static int lectureCount;
-    private String name;
-    private String description;
-    private int courseId;
-    private int personId;
-    private Lector lector;
+import schoolOnline.entitiesUtils.HomeworkUtil;
 
+public class Lecture{
     public Lecture(){
         this.id = ++lectureCount;
     }
@@ -15,13 +10,41 @@ public class Lecture extends Academy{
         this.courseId = courseId;
         this.id = ++lectureCount;
         this.lector = new Lector(Role.LECTOR, courseId, id);
+        homeworkArr = new Homework[16];
     }
-
+    private int id;
+    private String name;
+    public String commonName;
+    private Homework [] homeworkArr;
+    private static int lectureCount;
+    private String description;
+    private int courseId;
+    private int personId;
+    private Lector lector;
+    public void addHomework(Homework homework){
+        HomeworkUtil.add(homeworkArr, homework);
+    }
+    public Homework getHomeworkById(int homeworkId){
+        return HomeworkUtil.getById(this.homeworkArr, homeworkId);
+    }
+    public void setHomeworkArr(Homework[] homeworkArr){
+        this.homeworkArr = homeworkArr;
+    }
+    public Homework[] getHomeworkArr(){
+        return this.homeworkArr;
+    }
     public void setName(String name){
         this.name = name;
     }
     public String getName(){
         return this.name;
+    }
+
+    public void setId(int id){
+        this.id = id;
+    }
+    public int getId(){
+        return id;
     }
 
     public void setDescription(String description){
@@ -45,6 +68,7 @@ public class Lecture extends Academy{
     }
 
     public String toString(){
-        return "Name of lecture is " + this.name + ", and it's lector is " + this.lector;
+        return "Name of lecture is " + this.name + ", and it's lector is "
+                + this.lector;
     }
 }
