@@ -10,7 +10,11 @@ import java.util.Arrays;
 public class Main {
     public static void main(String [] arg){
 
-        Service.lectureWithHomework();
+        Service.findInfo();
+
+        Service.createValidPersons();
+
+        // Service.lectureWithHomework();
 
         // Service.types();
 
