@@ -9,6 +9,7 @@ import schoolOnline.repositories.CourseRepository;
 import schoolOnline.repositories.LectureRepository;
 
 public class LectureUtil {
+
     public static CourseRepository lectureLimitedCreate_Lesson10r(int lectureLimit){
         Scanner scan1 = new Scanner(System.in);
         Scanner scan2 = new Scanner(System.in);

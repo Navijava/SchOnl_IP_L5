@@ -10,7 +10,9 @@ import java.util.Arrays;
 public class Main {
     public static void main(String [] arg){
 
-        Service.types();
+        Service.lectureWithHomework();
+
+        // Service.types();
 
         // Service.createValidPersons();
 
@@ -23,7 +25,7 @@ public class Main {
         new Lector(Role.LECTOR, 2, 2);
         System.out.println(LectorRepository.allLectors());*/
 
-        //System.out.println(Arrays.toString(LectorRepository.lectorRepository));
+        // System.out.println(Arrays.toString(LectorRepository.lectorRepository));
 
     }
 }

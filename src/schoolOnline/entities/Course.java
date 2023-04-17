@@ -4,7 +4,16 @@ import schoolOnline.repositories.LectureRepository;
 
 import java.util.ArrayList;
 
-public class Course extends Academy{
+public class Course{
+    private int id;
+    public String commonName;
+    public void setId(int id){
+        this.id = id;
+    }
+    public int getId(){
+        return id;
+    }
+
     private static int courseCount;
     private String name;
     private int studentNumber = Student.getStudentCount();

@@ -3,7 +3,7 @@ package schoolOnline.repositories;
 import schoolOnline.entities.Course;
 import schoolOnline.entities.Lecture;
 
-public class CourseRepository  {
+public class CourseRepository implements CourseRepositoryMeth {
     public CourseRepository(){
         this.courseRepository = new Course[16];
     }
