@@ -28,10 +28,18 @@ public class LectureUtil {
         do{
            System.out.println("Choose course id where you wish to work. Possible id is between 1 and " +
                   courseRepository.courseRepository.length + ".");
-           courseId = scan1.nextInt();
-               if(courseId < 1 || courseId > courseRepository.courseRepository.length){
+           try {
+               courseId = scan1.nextInt();
+           }catch(Exception e){
+               System.out.println("Wrong symbol. Try again.");
+               scan1 = new Scanner(System.in);
+               courseId = 0;
+               continue;
+           }
+           if(courseId < 1 || courseId > courseRepository.courseRepository.length){
                System.out.println("Wrong choice!");
-               }
+           }
+
         } while(courseId < 1 || courseId > courseRepository.courseRepository.length);
         do {
             System.out.println("Possible to create " + (lectureLimit - Lecture.getLectureCount()) + " lectures.");
