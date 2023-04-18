@@ -8,14 +8,14 @@ public class Homework{
         this.task = task;
     }
     static int homeworkCount;
-    private int id;
+    private Integer id;
     private int lectureId;
     private String task;
     private String name;
-    public void setId(int id){
+    public void setId(Integer id){
         this.id = id;
     }
-    public int getId(){
+    public Integer getId(){
         return id;
     }
     public void setName(String name){

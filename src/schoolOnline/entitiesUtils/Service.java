@@ -1,16 +1,47 @@
 package schoolOnline.entitiesUtils;
 
 import schoolOnline.entities.*;
-import schoolOnline.repositories.CourseRepository;
-import schoolOnline.repositories.LectorRepository;
-import schoolOnline.repositories.LectureRepository;
-import schoolOnline.repositories.TypedRepository;
+import schoolOnline.repositories.*;
 
 import java.util.Random;
 import java.util.Scanner;
 
 public class Service {
+    public static void iteratorFun(){
 
+        LectureRepository lectureRepository = new LectureRepository();
+        Lecture tempLecture;
+        for(int i = 0; i < 10; i++){
+            lectureRepository.add(new Lecture(11));
+        }
+        SimpleIterator sitr = lectureRepository.iterator();
+
+        System.out.println("\nBefore removing lecture with id 6.\n");
+        while(sitr.hasNext()){
+            System.out.println(sitr.next());
+        }
+        sitr = lectureRepository.iterator();
+        while (sitr.hasNext()) {
+            tempLecture = sitr.next();
+            if(tempLecture.getId() == 6){
+                sitr.remove();
+                //break;
+            }
+        }
+        sitr = lectureRepository.iterator();
+
+        System.out.println("\nAfter removing lecture with id 6.\n");
+        while(sitr.hasNext()){
+            System.out.println(sitr.next());
+        }
+
+        System.out.println("_______________________________________________________________________");
+        System.out.println("Trying to find lecture with id 10, result:");
+        System.out.println(lectureRepository.findAll(10));
+        System.out.println("\nTrying to find lecture with id 12, result:");
+        System.out.println(lectureRepository.findAll(12));
+
+    }
     public static void lectureWithHomework(){
 
         final int courseId = 10;

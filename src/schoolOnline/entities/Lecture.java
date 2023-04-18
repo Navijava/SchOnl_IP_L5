@@ -12,7 +12,7 @@ public class Lecture{
         this.lector = new Lector(Role.LECTOR, courseId, id);
         homeworkArr = new Homework[16];
     }
-    private int id;
+    private Integer id;
     private String name;
     public String commonName;
     private Homework [] homeworkArr;
@@ -40,10 +40,10 @@ public class Lecture{
         return this.name;
     }
 
-    public void setId(int id){
+    public void setId(Integer id){
         this.id = id;
     }
-    public int getId(){
+    public Integer getId(){
         return id;
     }
 
@@ -68,7 +68,8 @@ public class Lecture{
     }
 
     public String toString(){
-        return "Name of lecture is " + this.name + ", and it's lector is "
-                + this.lector;
+        return "Lecture's id is " + this.id + ", and course id is " + this.courseId;
+//        return "Name of lecture is " + this.name + ", and it's lector is "
+//                + this.lector;
     }
 }
