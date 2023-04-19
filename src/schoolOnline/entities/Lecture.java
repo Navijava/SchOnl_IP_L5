@@ -1,5 +1,6 @@
 package schoolOnline.entities;
 
+import schoolOnline.entitiesUtils.AdditionalMaterialUtil;
 import schoolOnline.entitiesUtils.HomeworkUtil;
 
 public class Lecture{
@@ -11,6 +12,7 @@ public class Lecture{
         this.id = ++lectureCount;
         this.lector = new Lector(Role.LECTOR, courseId, id);
         homeworkArr = new Homework[16];
+        AdditionalMaterialUtil.generate(this.id);
     }
     private Integer id;
     private String name;

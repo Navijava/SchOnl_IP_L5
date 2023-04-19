@@ -1,9 +1,21 @@
 package schoolOnline.entities;
 
+import java.util.Random;
+
 public class AdditionalMaterial{
+    AdditionalMaterial(){
+        this.id = ++id;
+    }
+    public AdditionalMaterial(Integer lectureId){
+        this.id = ++additionalMaterialCount;
+        this.lectureId = lectureId;
+        this.resourceType = ResourceType.getByInt(new Random().nextInt(1, 4));
+    }
+    private static int additionalMaterialCount;
     private Integer id;
     private String name;
-    public String commonName;
+    private Integer lectureId;
+    private ResourceType resourceType;
     public void setId(Integer id){
         this.id = id;
     }
@@ -16,11 +28,26 @@ public class AdditionalMaterial{
     public String getName(){
         return name;
     }
+    public void setLectureId(Integer lectureId){
+        this.lectureId = lectureId;
+    }
+    public Integer getLectureId(){
+        return this.lectureId;
+    }
+    public void setResourceType(ResourceType resourceType){
+        this.resourceType = resourceType;
+    }
+    public ResourceType getResourceType(){
+        return this.resourceType;
+    }
     private int date;
     public void setDate(int date){
         this.date = date;
     }
     public int getDate(){
         return date;
+    }
+    public String toString(){
+        return "Additional material id is " + this.id + ", its resource type - " + this.resourceType + ". ";
     }
 }
