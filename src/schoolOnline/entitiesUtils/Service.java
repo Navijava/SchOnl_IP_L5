@@ -3,10 +3,104 @@ package schoolOnline.entitiesUtils;
 import schoolOnline.entities.*;
 import schoolOnline.repositories.*;
 
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Service {
+
+    static String bound = "__________________________________________________________________";
+    public static void sortEverything(){
+
+        ArrayList<Course> courseList = new ArrayList<>(List.of(
+                new Course("Python"),
+                new Course("Java"),
+                new Course("Ruby"),
+                new Course("Swift"),
+                new Course("Kotlin")
+        ));
+
+        System.out.println(courseList  + "\n");
+        courseList.sort(null);
+        System.out.println("After sort:\n" + courseList + "\n" + bound);
+
+        ArrayList<Lector> lectorList = new ArrayList<>(List.of(
+                new Lector("Petrenko"),
+                new Lector("Chub"),
+                new Lector("Moroziuk"),
+                new Lector("Zelenko"),
+                new Lector("Viy")
+
+        ));
+
+        System.out.println(lectorList + "\n");
+        lectorList.sort(null);
+        System.out.println("After sort:\n" + lectorList + "\n" + bound);
+
+        ArrayList<Student> studentList = new ArrayList<>(List.of(
+                new Student("Mask"),
+                new Student("Kook"),
+                new Student("Vozniak"),
+                new Student("Gates"),
+                new Student("Jobs")
+
+        ));
+
+        System.out.println(studentList + "\n");
+        studentList.sort(null);
+        System.out.println("After sort:\n" + studentList + "\n" + bound);
+
+        ArrayList<AdditionalMaterial> additionalMaterialList = new ArrayList<>(List.of(
+                new AdditionalMaterial(new Random().nextInt(1, 11)),
+                new AdditionalMaterial(new Random().nextInt(1, 11)),
+                new AdditionalMaterial(new Random().nextInt(1, 11)),
+                new AdditionalMaterial(new Random().nextInt(1, 11)),
+                new AdditionalMaterial(new Random().nextInt(1, 11))
+
+        ));
+        System.out.println(additionalMaterialList + "\n");
+        Scanner scan1 = new Scanner(System.in);
+        int sortChoice;
+        do {
+            System.out.println("How would you like to sort additional materials:\n1. By id.\n2. By lecture id." +
+                    "\n3. By resource type.\nInput number and press \"Enter\"");
+            try {
+                sortChoice = scan1.nextInt();
+                switch(sortChoice){
+                    case 1:
+                        additionalMaterialList.sort(null);
+                        System.out.println("After sort:\n" + additionalMaterialList + "\n" + bound);
+                        break;
+
+                    case 2:
+                        Comparator<AdditionalMaterial> comparator1 = new Comparator<>(){
+                            public int compare(AdditionalMaterial a, AdditionalMaterial b){
+                                return a.getLectureId() - b.getLectureId();
+                            }
+                        };
+                        additionalMaterialList.sort(comparator1);
+                        System.out.println("After sort:\n" + additionalMaterialList + "\n" + bound);
+                        break;
+
+                    case 3:
+                        Comparator<AdditionalMaterial> comparator2 = new Comparator<>(){
+                            public int compare(AdditionalMaterial a, AdditionalMaterial b){
+                                return b.getResourceType().compareTo(a.getResourceType());
+                            }
+                        };
+                        additionalMaterialList.sort(comparator2);
+                        System.out.println("After sort:\n" + additionalMaterialList + "\n" + bound);
+                        break;
+
+                    default:
+                        throw new ValidationException();
+                }
+            } catch (Exception e) {
+                System.out.println("Wrong choice, try again");
+                sortChoice = 0;
+                scan1 = new Scanner(System.in);
+            }
+        }//while(true);
+        while(sortChoice < 1 || sortChoice > 3);
+    }
     public static void iteratorFun(){
 
         LectureRepository lectureRepository = new LectureRepository();

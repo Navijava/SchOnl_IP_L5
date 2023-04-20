@@ -4,7 +4,12 @@ import schoolOnline.repositories.LectureRepository;
 
 import java.util.ArrayList;
 
-public class Course{
+public class Course implements Comparable<Course> {
+    public Course(){this.id = ++courseCount;}
+    public Course(String name){
+        this.id = ++courseCount;
+        this.name = name;
+    }
     private Integer id;
     public String commonName;
     public void setId(Integer id){
@@ -23,9 +28,6 @@ public class Course{
     private ArrayList<Student> student;
     private ArrayList<Lecture> lecture;
     private LectureRepository lectureRepository;
-    public Course(){
-        this.id = ++courseCount;
-    }
     public static int getCourseCount(){
         return courseCount;
     }
@@ -42,6 +44,12 @@ public class Course{
         return lectureRepository;
     }
      public String toString(){
-        return "Course id is " + id + ".";
+         //return "Course id is " + id + ".";
+         return "\nCourse name is " + name;
+    }
+
+    @Override
+    public int compareTo(Course o) {
+        return this.name.compareTo(o.name);
     }
 }
