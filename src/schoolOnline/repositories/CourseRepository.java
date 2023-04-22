@@ -38,7 +38,7 @@ public class CourseRepository implements CourseRepositoryMeth {
 
     public Lecture getById(int id) {
         for(int i = 0; i < courseRepository.length; i++){
-            if (courseRepository[i].getLectureRepository().getById(id) != null) {
+            if (courseRepository[i] != null && courseRepository[i].getLectureRepository().getById(id) != null) {
                 return courseRepository[i].getLectureRepository().getById(id);
             }
 //            for(int j = 0; j < courseRepository[i].getLectureRepository().getAll().length; j++){
@@ -46,24 +46,14 @@ public class CourseRepository implements CourseRepositoryMeth {
 //                    return courseRepository[i].getLectureRepository().getAll()[j];
 //                }
 //            }
-
         }
         return null;
     }
     public boolean deleteById(int id) {
         for(int i = 0; i < courseRepository.length; i++){
-            if (courseRepository[i].getLectureRepository().deleteById(id)){
+            if (courseRepository[i] != null && courseRepository[i].getLectureRepository().deleteById(id)){
                 return true;
             }
-//            for(int j = 0; j < courseRepository[i].getLectureRepository().getAll().length; j++){
-//                if(courseRepository[i].getLectureRepository().getAll()[j] != null && courseRepository[i].getLectureRepository().getAll()[j].getId() == id){
-//                    courseRepository[i].getLectureRepository().
-//                            setLectureAddedCount(
-//                                    courseRepository[i].getLectureRepository().getLectureAddedCount() - 1);
-//                    courseRepository[i].getLectureRepository().getAll()[j] = null;
-//                    return true;
-//                }
-//            }
         }
         return false;
     }
@@ -78,4 +68,15 @@ public class CourseRepository implements CourseRepositoryMeth {
         return (result.length() > 2) ? result.substring(0, result.length() - 2) : "No information.";
         // return Arrays.toString(lectureRepository);
     }
+
+    public void print(){
+        String result = "";
+        for (int i = 0; i < courseRepository.length; i++) {
+            if (courseRepository[i].getLectureRepository().getAll().size() != 0) {
+                System.out.println("Course id - " + (i + 1) + ", and its lectures:");
+                courseRepository[i].getLectureRepository().showAllId();
+            }
+        }
+    }
+
 }

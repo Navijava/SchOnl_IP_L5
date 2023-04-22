@@ -136,7 +136,7 @@ public class Service {
         System.out.println(lectureRepository.findAll(12));
 
     }
-    public static void lectureWithHomework(){
+/*    public static void lectureWithHomework(){
 
         final int courseId = 10;
         Lecture lecture = new Lecture(courseId);
@@ -144,7 +144,7 @@ public class Service {
         lecture.addHomework(homework1);
         System.out.println(lecture.getHomeworkById(2) + "\n\n" + lecture.getHomeworkById(1));
 
-    }
+    }*/
 
     public static void types(){
         LectureRepository lectureRepository = new LectureRepository(3);
@@ -370,22 +370,23 @@ public class Service {
         int answer = 0;
         while(true) {
             do {
-                System.out.println("What information do you want to find: \n1. Course. \n2. Lecture. \n3. Lector. \n4. Student."
-                        + "\n5. All information about course and available lectures. \n6. Find lecture by id. "
-                        + "\n7. Remove lecture by id. \n8. Get additional material for lecture. \nEnter number and press \"Enter\"");
+                System.out.println("What information do you want to find: \n1. Course. \n2. Lecture. \n3. Lector. "
+                        + "\n4. Student. \n5. All information about course and available lectures. "
+                        + "\n6. Find lecture by id. \n7. Remove lecture by id.\n8. Get additional material for lecture."
+                        + "\n9. Get homework for lecture. \nEnter number and press \"Enter\"");
                 try {
                     answer = scan1.nextInt();
                 } catch(Exception e){
                     System.out.println("Wrong symbol. Try again.");
                     scan1 = new Scanner(System.in);
                 }
-            } while (answer < 1 || answer > 8);
+            } while (answer < 1 || answer > 9);
             switch (answer) {
                 case 1:
 
                     for (int i = 0; i < courseRepository.courseRepository.length; i++) {
                         System.out.println("Number of lectures in course with id " + (i + 1) + " is " +
-                                courseRepository.courseRepository[i].getLectureRepository().getLectureAddedCount() + ".");
+                              courseRepository.courseRepository[i].getLectureRepository().getLectureAddedCount() + ".");
                     }
                     System.out.println("Enter id of the course to see information about course (list of lectures id).");
                     int chosenCourseId = scan1.nextInt();
@@ -397,11 +398,137 @@ public class Service {
                 case 2:
 
                     System.out.println("Information about all available lectures in all courses:");
-                    for (int i = 0; i < courseRepository.courseRepository.length; i++) {
-                        if (courseRepository.courseRepository[i].getLectureRepository().getAll().size() != 0) {
-                            System.out.println("Course id - " + (i + 1) + ", and its lectures:");
-                            courseRepository.courseRepository[i].getLectureRepository().showAllId();
+//                    for (int i = 0; i < courseRepository.courseRepository.length; i++) {
+//                        if (courseRepository.courseRepository[i].getLectureRepository().getAll().size() != 0) {
+//                            System.out.println("Course id - " + (i + 1) + ", and its lectures:");
+//                            courseRepository.courseRepository[i].getLectureRepository().showAllId();
+//                        }
+//                    }
+                    courseRepository.print();
+                    System.out.println("Choose next step:\n1. Get information about all homework by lecture id." +
+                            "\n2. Get information about all additional task by lecture id." +
+                            "\n3. Return to main menu");
+                    int step = -1;
+                    do {
+                        try {
+                            step = scan1.nextInt();
+                        } catch (Exception e) {
+                            System.out.println("Wrong symbol. Try again.");
+                            scan1 = new Scanner(System.in);
                         }
+                    }while(step < 1 || step > 3);
+                    switch(step){
+                        case 1:
+                            System.out.println(HomeworkRepository.print());
+                            System.out.println("Choose next step:\n1. Add new homework." +
+                                    "\n2. Remove homework." +
+                                    "\n3. Return to main menu");
+                            int step1 = -1;
+                            do {
+                                try {
+                                    step1 = scan1.nextInt();
+                                } catch (Exception e) {
+                                    System.out.println("Wrong symbol. Try again.");
+                                    scan1 = new Scanner(System.in);
+                                }
+                            }while(step1 < 1 || step1 > 3);
+                            courseRepository.print();
+                            switch(step1){
+                                case 1:
+                                    System.out.println("Choose lecture id from available in the list to which you want "
+                                            + "add homework.");
+                                    int step2 = -1;
+                                    do {
+                                        try {
+                                            step2 = scan1.nextInt();
+                                            if(courseRepository.getById(step2) == null){
+                                                throw new ValidationException();
+                                            }
+                                        } catch (Exception e) {
+                                            System.out.println("Wrong symbol. Try again.");
+                                            scan1 = new Scanner(System.in);
+                                        }
+                                    }while(courseRepository.getById(step2) == null);
+                                    HomeworkRepository.add(new Homework(step2));
+                                    System.out.println("Homework was successfully added." + HomeworkRepository.print());
+                                    break;
+                                case 2:
+                                    System.out.println(HomeworkRepository.print()
+                                            + "\nChoose homework id from available in the list which you want remove.");
+                                    int step3 = -1;
+                                    try {
+                                        step3 = scan1.nextInt();
+                                    } catch (Exception e) {
+                                        System.out.println("Wrong symbol. Try again.");
+                                        scan1 = new Scanner(System.in);
+                                    }
+                                    if(HomeworkRepository.removeById(step3)){
+                                        System.out.println("Homework was successfully removed." + HomeworkRepository.print());
+                                    } else{
+                                        System.out.println("There is no homework with id "  + step3 + ".\n"
+                                                + HomeworkRepository.print());
+                                    }
+                                    break;
+                            }
+                            break;
+                        case 2:
+                            System.out.println(AdditionalMaterialRepository.print());
+                            System.out.println("Choose next step:\n1. Add new additional material." +
+                                    "\n2. Remove additional material." +
+                                    "\n3. Return to main menu");
+                            int step4 = -1;
+                            do {
+                                try {
+                                    step4 = scan1.nextInt();
+                                } catch (Exception e) {
+                                    System.out.println("Wrong symbol. Try again.");
+                                    scan1 = new Scanner(System.in);
+                                }
+                            }while(step4 < 1 || step4 > 3);
+                            courseRepository.print();
+                            switch(step4){
+                                case 1:
+                                    System.out.println("Choose lecture id from available in the list to which you "
+                                            + "want add additional material.");
+                                    int step5 = -1;
+                                    do {
+                                        try {
+                                            step5 = scan1.nextInt();
+                                            if(courseRepository.getById(step5) == null){
+                                                throw new ValidationException();
+                                            }
+                                        } catch (Exception e) {
+                                            System.out.println("Wrong symbol. Try again.");
+                                            scan1 = new Scanner(System.in);
+                                        }
+                                    }while(courseRepository.getById(step5) == null);
+                                    AdditionalMaterialRepository.add(new AdditionalMaterial(step5));
+                                    System.out.println("Additional material was successfully added."
+                                            + AdditionalMaterialRepository.print());
+                                    break;
+                                case 2:
+                                    System.out.println(AdditionalMaterialRepository.print()
+                                            + "\nChoose additional material id from available in the list which "
+                                            + "you want remove.");
+                                    int step6 = -1;
+                                    try {
+                                        step6 = scan1.nextInt();
+                                    } catch (Exception e) {
+                                        System.out.println("Wrong symbol. Try again.");
+                                        scan1 = new Scanner(System.in);
+                                    }
+                                    if(AdditionalMaterialRepository.removeById(step6)){
+                                        System.out.println("Additional material was successfully removed."
+                                                + AdditionalMaterialRepository.print());
+                                    } else{
+                                        System.out.println("There is no additional material with id "  + step6 + ".\n"
+                                                + AdditionalMaterialRepository.print());
+                                    }
+                                    break;
+                            }
+
+
+                            break;
                     }
                     break;
 
@@ -425,7 +552,7 @@ public class Service {
                     System.out.println("All information about course and available lectures:");
                     for (int i = 0; i < courseRepository.courseRepository.length; i++) {
                         System.out.println("Number of lectures in course with id " + (i + 1) + " is "
-                                + courseRepository.courseRepository[i].getLectureRepository().getLectureAddedCount() + ".");
+                         + courseRepository.courseRepository[i].getLectureRepository().getLectureAddedCount() + ".");
                     }
                     System.out.println("Information about all available lectures in all courses:");
                     for (int i = 0; i < courseRepository.courseRepository.length; i++) {
@@ -480,6 +607,21 @@ public class Service {
                         System.out.println(AdditionalMaterialRepository.getById(addMatId)
                                 + "\nAll additional materials:\n" +
                                 AdditionalMaterialRepository.getAdditionalMaterialRepository());
+
+                    }catch(Exception e){
+                        scan1 = new Scanner(System.in);
+                        System.out.println("Incorrect symbol, try again.");
+                    }
+                    break;
+
+                case 9:
+
+                    System.out.println("Enter id of homework which you want to find.");
+                    try {
+                        int homewokrId = scan1.nextInt();
+                        System.out.println(HomeworkRepository.getById(homewokrId)
+                                + "\nAll additional materials:\n" +
+                                HomeworkRepository.print());
 
                     }catch(Exception e){
                         scan1 = new Scanner(System.in);

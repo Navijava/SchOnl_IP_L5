@@ -31,10 +31,22 @@ public class LectureRepository implements LectureRepositoryMeth, Iterable {
         return lectureRepository;
     }
     public Lecture getById(int id){
-        return lectureRepository.get(id);
+        for(int i = 0; i < lectureRepository.size(); i++) {
+            if(lectureRepository.get(i).getId() == id){
+                return lectureRepository.get(i);
+            }
+        }
+        return null;
     }
     public boolean deleteById(int id){
-          return lectureRepository.remove(lectureRepository.get(id));
+            for(int i = 0; i < lectureRepository.size(); i++) {
+                if(lectureRepository.get(i).getId() == id){
+                    lectureRepository.remove(lectureRepository.get(i));
+                    lectureAddedCount--;
+                    return true;
+                }
+            }
+            return false;
     }
     public void showAllId(){
         String result = "\n";

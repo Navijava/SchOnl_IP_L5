@@ -1,16 +1,20 @@
 package schoolOnline.entities;
 
+import java.util.Random;
+
 public class Homework{
-    public Homework(){}
-    public Homework(int lectureId, String task){
-        id = ++homeworkCount;
+    public Homework(){
+        this.id = ++homeworkCount;
+    }
+    public Homework(int lectureId){
+        this.id = ++homeworkCount;
         this.lectureId = lectureId;
-        this.task = task;
+        this.task = Task.getByInt(new Random().nextInt(1, 6));
     }
     static int homeworkCount;
     private Integer id;
     private int lectureId;
-    private String task;
+    private Task task;
     private String name;
     public void setId(Integer id){
         this.id = id;
@@ -30,10 +34,10 @@ public class Homework{
     public int getLectureId(){
         return this.lectureId;
     }
-    public void setTask(String task){
+    public void setTask(Task task){
         this.task = task;
     }
-    public String getTask(){
+    public Task getTask(){
         return this.task;
     }
     private int date;
@@ -44,7 +48,8 @@ public class Homework{
         return date;
     }
     public String toString(){
-        return "Lecture id of task is " + this.lectureId + ", task id " + this.id + ", task is: "
-                + task + ".";
+        return "\nHomework id is " + this.id
+                + " lecture id is " + this.lectureId
+                + ", task is: " + this.task + ".";
     }
 }

@@ -4,8 +4,8 @@ public enum ResourceType {
     URL(1),
     VIDEO(2),
     BOOK(3);
-    int id;
-    ResourceType(){}
+    final int id;
+    //ResourceType(){}
     ResourceType(int id){
         this.id = id;
     }

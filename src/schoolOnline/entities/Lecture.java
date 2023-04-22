@@ -13,6 +13,7 @@ public class Lecture{
         this.lector = new Lector(Role.LECTOR, courseId, id);
         homeworkArr = new Homework[16];
         AdditionalMaterialUtil.generate(this.id);
+        HomeworkUtil.generate(this.id);
     }
     private Integer id;
     private String name;
@@ -23,12 +24,12 @@ public class Lecture{
     private int courseId;
     private int personId;
     private Lector lector;
-    public void addHomework(Homework homework){
+    /*public void addHomework(Homework homework){
         HomeworkUtil.add(homeworkArr, homework);
     }
     public Homework getHomeworkById(int homeworkId){
         return HomeworkUtil.getById(this.homeworkArr, homeworkId);
-    }
+    }*/
     public void setHomeworkArr(Homework[] homeworkArr){
         this.homeworkArr = homeworkArr;
     }
