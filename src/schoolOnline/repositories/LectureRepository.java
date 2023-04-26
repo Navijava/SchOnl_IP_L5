@@ -2,17 +2,17 @@ package schoolOnline.repositories;
 
 import schoolOnline.entities.Lecture;
 
-import java.util.Iterator;
-import java.util.SimpleTimeZone;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LectureRepository implements LectureRepositoryMeth, Iterable {
     protected int lectureAddedCount = 0;
-    private Lecture[] lectureRepository;
+    private ArrayList<Lecture> lectureRepository;
     public LectureRepository(){
-        this.lectureRepository = new Lecture[16];
+        this.lectureRepository = new ArrayList<>();
     }
     public LectureRepository(int capacity){
-        this.lectureRepository = new Lecture[capacity];
+        this.lectureRepository = new ArrayList(capacity);
     }
     public int getLectureAddedCount(){
         return lectureAddedCount;
@@ -24,59 +24,25 @@ public class LectureRepository implements LectureRepositoryMeth, Iterable {
 
     public void add(Lecture lecture){
         lectureAddedCount++;
-        if(!checkSpace()){
-            lectureRepository = increaseSpace();
-        }
-        for(int i = 0; i < lectureRepository.length; i++){
-            if(lectureRepository[i] == null) {
-                lectureRepository[i] = lecture;
-                return;
-            }
-        }
-    }
-    public boolean checkSpace(){
-        for (int i = 0; i < lectureRepository.length; i++){
-            if(lectureRepository[i] == null) return true;
-        }
-        return false;
-    }
-    public Lecture[] increaseSpace(){
-        Lecture [] lectureRepositoryRes = new Lecture[(lectureRepository.length * 3) / 2 + 1];
-        for(int i = 0; i < lectureRepository.length; i++){
-            lectureRepositoryRes[i] = lectureRepository[i];
-        }
-        return lectureRepositoryRes;
+        lectureRepository.add(lecture);
     }
 
-    public Lecture[] getAll(){
+    public ArrayList<Lecture> getAll(){
         return lectureRepository;
     }
     public Lecture getById(int id){
-        for(int i = 0; i < lectureRepository.length; i++){
-            if(lectureRepository[i] != null && lectureRepository[i].getId() == id){
-                return lectureRepository[i];
-            }
-        }
-        return null;
+        return lectureRepository.get(id);
     }
     public boolean deleteById(int id){
-        for(int i = 0; i < lectureRepository.length; i++){
-            if(lectureRepository[i] != null && lectureRepository[i].getId() == id){
-                lectureAddedCount = lectureAddedCount - 1;
-                LectorRepository.deleteById(lectureRepository[i].getId());
-                lectureRepository[i] = null;
-                return true;
-            }
-        }
-        return false;
+          return lectureRepository.remove(lectureRepository.get(id));
     }
     public void showAllId(){
         String result = "\n";
-        for (int i = 0; i < lectureRepository.length; i++){
-            if(lectureRepository[i] != null) {
-                result = result + "lecture's id - " + + lectureRepository[i].getId()
-                        + ", and name - " + lectureRepository[i].getName()
-                        + ", and lector's name " + lectureRepository[i].getLector().getName() + "\n";
+        for (int i = 0; i < lectureRepository.size(); i++){
+            if(lectureRepository.get(i) != null) {
+                result = result + "lecture's id - " + + lectureRepository.get(i).getId()
+                        + ", and name - " + lectureRepository.get(i).getName()
+                        + ", and lector's name " + lectureRepository.get(i).getLector().getName() + "\n";
             }
         }
         if (result.equals("")) {
@@ -91,7 +57,7 @@ public class LectureRepository implements LectureRepositoryMeth, Iterable {
         SimpleIterator sitr = this.iterator();
         Lecture tempLecture;
         while(sitr.hasNext()){
-             tempLecture = sitr.next();
+            tempLecture = sitr.next();
             if(tempLecture.getId() == id){
                 System.out.print("Lecture is found. ");
                 return tempLecture;
@@ -103,9 +69,9 @@ public class LectureRepository implements LectureRepositoryMeth, Iterable {
 
     public String toString(){
         String result = "";
-        for(int i = 0; i < lectureRepository.length; i++){
-            if(lectureRepository[i] != null) {
-                result = result + lectureRepository[i] + ", ";
+        for(int i = 0; i < lectureRepository.size(); i++){
+            if(lectureRepository.get(i) != null) {
+                result = result + lectureRepository.get(i) + ", ";
             }
         }
         return result.substring(0, result.length() - 2);

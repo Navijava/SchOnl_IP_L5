@@ -61,7 +61,8 @@ public class Service {
             lectureRepository.add(tempLecture);
 
         }
-        TypedRepository<Lecture> typedRepository = new TypedRepository<>(lectureRepository.getAll());
+        TypedRepository<Lecture> typedRepository =
+                new TypedRepository<>(lectureRepository.getAll().toArray(new Lecture []{}));
 
         System.out.println("\n__________________________________________________________________________\n");
         System.out.println("Empty? - " + typedRepository.isEmpty() + "\nSize? - " + typedRepository.size());
@@ -277,14 +278,14 @@ public class Service {
             do {
                 System.out.println("What information do you want to find: \n1. Course. \n2. Lecture. \n3. Lector. \n4. Student."
                         + "\n5. All information about course and available lectures. \n6. Find lecture by id. "
-                        + "\n7. Remove lecture by id. \nEnter number and press \"Enter\"");
+                        + "\n7. Remove lecture by id. \n8. Get additional material for lecture. \nEnter number and press \"Enter\"");
                 try {
                     answer = scan1.nextInt();
                 } catch(Exception e){
                     System.out.println("Wrong symbol. Try again.");
                     scan1 = new Scanner(System.in);
                 }
-            } while (answer < 1 || answer > 7);
+            } while (answer < 1 || answer > 8);
             switch (answer) {
                 case 1:
 
@@ -303,7 +304,7 @@ public class Service {
 
                     System.out.println("Information about all available lectures in all courses:");
                     for (int i = 0; i < courseRepository.courseRepository.length; i++) {
-                        if (courseRepository.courseRepository[i].getLectureRepository().getAll().length != 0) {
+                        if (courseRepository.courseRepository[i].getLectureRepository().getAll().size() != 0) {
                             System.out.println("Course id - " + (i + 1) + ", and its lectures:");
                             courseRepository.courseRepository[i].getLectureRepository().showAllId();
                         }
@@ -334,7 +335,7 @@ public class Service {
                     }
                     System.out.println("Information about all available lectures in all courses:");
                     for (int i = 0; i < courseRepository.courseRepository.length; i++) {
-                        if (courseRepository.courseRepository[i].getLectureRepository().getAll().length != 0) {
+                        if (courseRepository.courseRepository[i].getLectureRepository().getAll().size() != 0) {
                             System.out.println("Course id - " + (i + 1) + ", and its lectures:");
                             courseRepository.courseRepository[i].getLectureRepository().showAllId();
                         }
@@ -374,6 +375,21 @@ public class Service {
                         }
                     }catch(EntityNotFoundException e){
                         System.out.println(e + "\n" + e.getMessage());
+                    }
+                    break;
+
+                case 8:
+
+                    System.out.println("Enter id of additional material which you want to find.");
+                    try {
+                        int addMatId = scan1.nextInt();
+                        System.out.println(AdditionalMaterialRepository.getById(addMatId)
+                                + "\nAll additional materials:\n" +
+                                AdditionalMaterialRepository.getAdditionalMaterialRepository());
+
+                    }catch(Exception e){
+                        scan1 = new Scanner(System.in);
+                        System.out.println("Incorrect symbol, try again.");
                     }
                     break;
 
