@@ -2,7 +2,7 @@ package schoolOnline.entities;
 
 import java.util.Random;
 
-public class AdditionalMaterial{
+public class AdditionalMaterial implements Comparable<AdditionalMaterial>{
     AdditionalMaterial(){
         this.id = ++id;
     }
@@ -48,6 +48,13 @@ public class AdditionalMaterial{
         return date;
     }
     public String toString(){
-        return "Additional material id is " + this.id + ", its resource type - " + this.resourceType + ". ";
+        return "\nAdditional material id is " + this.id
+                + ", lecture's id is " + lectureId +
+                ", its resource type - " + this.resourceType + ". ";
+    }
+
+    @Override
+    public int compareTo(AdditionalMaterial addMat) {
+        return this.id - addMat.id;
     }
 }

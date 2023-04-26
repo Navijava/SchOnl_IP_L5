@@ -4,12 +4,16 @@ import schoolOnline.repositories.LectorRepository;
 
 import java.util.Random;
 
-public class Lector{
+public class Lector implements Comparable<Lector>{
     LectorRepository lr;
     private static int lectorCount;
     private int lectureId;
     public Lector(){
         lectorCount++;
+    }
+    public Lector(String lastname){
+        lectorCount++;
+        this.lastname = lastname;
     }
     public Lector(Role role, int courseId, int lectureId){
 
@@ -95,13 +99,18 @@ public class Lector{
         return this.courseId;
     }
     public String toString(){
-        return (role == Role.STUDENT) ? "Student is studying at course with id " + this.courseId + ".":
+        /*return (role == Role.STUDENT) ? "Student is studying at course with id " + this.courseId + ".":
                 (role == Role.LECTOR) ? "Lector is teaching at course with id " + this.courseId + ".":
-                        "Peron is unknown at course with id " + this.courseId + ".";
+                        "Peron is unknown at course with id " + this.courseId + ".";*/
+        return "\nLector's lastname is " + lastname;
     }
 
     /*public String toString(){
         return this.getName();
     }*/
+
+    public int compareTo(Lector lector){
+        return this.lastname.compareTo(lector.lastname);
+    }
 
 }

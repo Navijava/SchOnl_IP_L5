@@ -1,8 +1,12 @@
 package schoolOnline.entities;
 
-public class Student {
+public class Student implements Comparable<Student>{
     private static int studentCount;
     public Student(){
+        studentCount++;
+    }
+    public Student(String lastname){
+        this.lastname = lastname;
         studentCount++;
     }
     public static int getStudentCount(){
@@ -76,8 +80,12 @@ public class Student {
         return this.courseId;
     }
     public String toString(){
-        return (role == Role.STUDENT) ? "Student is studying at course with id " + this.courseId + ".":
+   /*     return (role == Role.STUDENT) ? "Student is studying at course with id " + this.courseId + ".":
                 (role == Role.LECTOR) ? "Lector is teaching at course with id " + this.courseId + ".":
-                        "Peron is unknown at course with id " + this.courseId + ".";
+                        "Peron is unknown at course with id " + this.courseId + ".";*/
+        return "\nStudent's lastname is " + lastname;
+    }
+    public int compareTo(Student student){
+        return this.lastname.compareTo(student.lastname);
     }
 }
