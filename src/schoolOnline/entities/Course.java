@@ -5,12 +5,12 @@ import schoolOnline.repositories.LectureRepository;
 import java.util.ArrayList;
 
 public class Course{
-    private int id;
+    private Integer id;
     public String commonName;
-    public void setId(int id){
+    public void setId(Integer id){
         this.id = id;
     }
-    public int getId(){
+    public Integer getId(){
         return id;
     }
 

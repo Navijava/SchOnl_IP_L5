@@ -1,13 +1,13 @@
 package schoolOnline.entities;
 
 public class Academy {
-    protected int id;
+    protected Integer id;
     protected String name;
     public String commonName;
-    public void setId(int id){
+    public void setId(Integer id){
         this.id = id;
     }
-    public int getId(){
+    public Integer getId(){
         return id;
     }
     public void setName(String name){

@@ -17,7 +17,7 @@ public class Student {
     private Role role;
     private int courseId;
 
-    private int id;
+    private Integer id;
 
     public void setFirstname(String firstname){
         this.firstname = firstname;

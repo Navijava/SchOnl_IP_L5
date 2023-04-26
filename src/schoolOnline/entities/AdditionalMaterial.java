@@ -1,13 +1,13 @@
 package schoolOnline.entities;
 
 public class AdditionalMaterial{
-    private int id;
+    private Integer id;
     private String name;
     public String commonName;
-    public void setId(int id){
+    public void setId(Integer id){
         this.id = id;
     }
-    public int getId(){
+    public Integer getId(){
         return id;
     }
     public void setName(String name){

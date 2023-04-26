@@ -2,9 +2,12 @@ package schoolOnline.repositories;
 
 import schoolOnline.entities.Lecture;
 
-public class LectureRepository implements LectureRepositoryMeth {
+import java.util.Iterator;
+import java.util.SimpleTimeZone;
+
+public class LectureRepository implements LectureRepositoryMeth, Iterable {
     protected int lectureAddedCount = 0;
-    protected Lecture[] lectureRepository;
+    private Lecture[] lectureRepository;
     public LectureRepository(){
         this.lectureRepository = new Lecture[16];
     }
@@ -83,6 +86,21 @@ public class LectureRepository implements LectureRepositoryMeth {
         System.out.println("Id and name of course lectures: " + result.substring(0, result.length() - 1) + ".");
         //System.out.println((result.length() > 2) ? result.substring(0, result.length() - 2) + "." : result);
     }
+
+    public Lecture findAll(int id){
+        SimpleIterator sitr = this.iterator();
+        Lecture tempLecture;
+        while(sitr.hasNext()){
+             tempLecture = sitr.next();
+            if(tempLecture.getId() == id){
+                System.out.print("Lecture is found. ");
+                return tempLecture;
+            }
+        }
+        System.out.print("There is no lecture with such id. Result is ");
+        return null;
+    }
+
     public String toString(){
         String result = "";
         for(int i = 0; i < lectureRepository.length; i++){
@@ -92,5 +110,10 @@ public class LectureRepository implements LectureRepositoryMeth {
         }
         return result.substring(0, result.length() - 2);
         // return Arrays.toString(lectureRepository);
+    }
+
+    @Override
+    public SimpleIterator iterator() {
+        return new SimpleIterator(this);
     }
 }

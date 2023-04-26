@@ -10,9 +10,11 @@ import java.util.Arrays;
 public class Main {
     public static void main(String [] arg){
 
-        Service.findInfo();
+        Service.iteratorFun();
 
-        Service.createValidPersons();
+        // Service.findInfo();
+
+        //Service.createValidPersons();
 
         // Service.lectureWithHomework();
 
