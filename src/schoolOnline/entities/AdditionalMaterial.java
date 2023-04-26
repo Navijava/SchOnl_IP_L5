@@ -49,7 +49,7 @@ public class AdditionalMaterial implements Comparable<AdditionalMaterial>{
     }
     public String toString(){
         return "\nAdditional material id is " + this.id
-                + ", lecture's id is " + lectureId +
+                + ", lecture's id is " + this.lectureId +
                 ", its resource type - " + this.resourceType + ". ";
     }
 

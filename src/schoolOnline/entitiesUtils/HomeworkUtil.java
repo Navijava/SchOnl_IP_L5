@@ -1,9 +1,20 @@
 package schoolOnline.entitiesUtils;
 
+import schoolOnline.entities.AdditionalMaterial;
 import schoolOnline.entities.Homework;
+import schoolOnline.repositories.AdditionalMaterialRepository;
+import schoolOnline.repositories.HomeworkRepository;
+import java.util.Random;
 
 public class HomeworkUtil {
-    public static Homework[] add(Homework [] homeworkArr, Homework homework){
+
+    public static void generate(int lectureId){
+        for(int i = 0; i < new Random().nextInt(2, 6); i++) {
+            HomeworkRepository.add(new Homework(lectureId));
+        }
+    }
+
+/*    public static Homework[] add(Homework [] homeworkArr, Homework homework){
         if(!checkSpace(homeworkArr)){
             increaseSpace(homeworkArr);
         }
@@ -39,7 +50,7 @@ public class HomeworkUtil {
         }
         homeworkArr = tempHomeworkArr;
         return homeworkArr;
-    }
+    }*/
 
 
 }
