@@ -8,6 +8,55 @@ import java.util.*;
 public class Service {
 
     static String bound = "__________________________________________________________________";
+
+    public static void threads(){
+
+        try{
+            ArrayList<String> arrDone = new ArrayList<>();
+            ArrayList<Integer> taskList = new ArrayList<>();
+            TreeMap<String, Boolean> result = new TreeMap<>();
+
+            for(int i = 0; i < 10; i++){
+                taskList.add((i + 1));
+            }
+
+            Thread tmpThr = null;
+
+            for(int i = 1; i < 11; i++){
+                String student = "Student " + i;
+                result.put(student, false);
+                tmpThr = new Thread(()->{
+                    try {
+                        Thread.sleep(new Random().nextInt(8, 15) * 1000);
+                        arrDone.add(Thread.currentThread().getName());
+                        result.put(Thread.currentThread().getName(), true);
+                    } catch (InterruptedException e) { }
+                });
+                tmpThr.setName(student);
+                System.out.println(tmpThr.getName() + " get task "
+                        + taskList.remove(new Random().nextInt(taskList.size())) + ".");
+                tmpThr.setDaemon(true);
+                tmpThr.start();
+            }
+            Thread.sleep(12000);
+            for(String std : result.keySet()){
+                if(result.get(std) && ! arrDone.contains(std)){
+                    arrDone.add(std);
+                }
+            }
+            System.out.println(bound);
+            for(int i = 0; i < arrDone.size(); i++){
+                System.out.println(arrDone.get(i) + " finished " + (i + 1) + ".");
+            }
+            for(String std : result.keySet()){
+                if(! result.get(std)){
+                    System.out.println(std + " failed.");
+                }
+            }
+
+        }catch(InterruptedException e){}
+    }
+
     public static void sortEverything(){
 
         ArrayList<Course> courseList = new ArrayList<>(List.of(
@@ -150,6 +199,7 @@ public class Service {
         LectureRepository lectureRepository = new LectureRepository(3);
         Lecture tempLecture;
         for(int i = 0; i < 2; i++){
+            new Random().nextInt(1, 10);
             tempLecture = new Lecture(new Random().nextInt(1, 10));
             tempLecture.setName("lecture" + (i + 1));
             lectureRepository.add(tempLecture);
