@@ -2,10 +2,11 @@ package schoolOnline.repositories;
 
 import schoolOnline.entities.AdditionalMaterial;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class AdditionalMaterialRepository {
+public class AdditionalMaterialRepository implements Serializable {
     private static HashMap<Integer, ArrayList<AdditionalMaterial>> additionalMaterialRepository = new HashMap<>();
     //private static HashMap<Integer, ArrayList<AdditionalMaterial>> additionalMaterialMap = new HashMap<>();
     public static void setAdditionalMaterialRepository(ArrayList<AdditionalMaterial> additionalMaterialRepository){

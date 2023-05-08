@@ -2,8 +2,12 @@ package schoolOnline.entities;
 
 import schoolOnline.entitiesUtils.AdditionalMaterialUtil;
 import schoolOnline.entitiesUtils.HomeworkUtil;
+import schoolOnline.repositories.AdditionalMaterialRepository;
+import schoolOnline.repositories.HomeworkRepository;
 
-public class Lecture{
+import java.io.Serializable;
+
+public class Lecture implements Serializable {
     public Lecture(){
         this.id = ++lectureCount;
     }
@@ -14,6 +18,8 @@ public class Lecture{
         homeworkArr = new Homework[16];
         AdditionalMaterialUtil.generate(this.id);
         HomeworkUtil.generate(this.id);
+        this.homeworkRepository = new HomeworkRepository();
+        this.additionalMaterialRepository = new AdditionalMaterialRepository();
     }
     private Integer id;
     private String name;
@@ -35,6 +41,14 @@ public class Lecture{
     }
     public Homework[] getHomeworkArr(){
         return this.homeworkArr;
+    }
+    private HomeworkRepository homeworkRepository;
+    public HomeworkRepository getHomeworkRepository(){
+        return this.homeworkRepository;
+    }
+    private AdditionalMaterialRepository additionalMaterialRepository;
+    public AdditionalMaterialRepository getAdditionalMaterialRepository(){
+        return this.additionalMaterialRepository;
     }
     public void setName(String name){
         this.name = name;

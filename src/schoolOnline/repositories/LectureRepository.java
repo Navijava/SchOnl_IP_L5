@@ -2,10 +2,11 @@ package schoolOnline.repositories;
 
 import schoolOnline.entities.Lecture;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LectureRepository implements LectureRepositoryMeth, Iterable {
+public class LectureRepository implements LectureRepositoryMeth, Iterable, Serializable {
     protected int lectureAddedCount = 0;
     private ArrayList<Lecture> lectureRepository;
     public LectureRepository(){
@@ -18,7 +19,6 @@ public class LectureRepository implements LectureRepositoryMeth, Iterable {
         return lectureAddedCount;
     }
     public void setLectureAddedCount(int lectureAddedCount){
-
         this.lectureAddedCount = lectureAddedCount;
     }
 

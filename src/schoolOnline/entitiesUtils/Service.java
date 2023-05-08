@@ -3,11 +3,67 @@ package schoolOnline.entitiesUtils;
 import schoolOnline.entities.*;
 import schoolOnline.repositories.*;
 
+import java.io.*;
 import java.util.*;
 
 public class Service {
 
-    static String bound = "__________________________________________________________________";
+    static String bound = "\n__________________________________________________________________\n";
+
+    public static void serializeEverything(){
+        Course course = new Course("Java");
+        Lecture tempLecture;
+        Student tempStudent;
+        for(int i = 0; i < 11; i++){
+            tempLecture = new Lecture(course.getId());
+            tempLecture.setName("lecture " + (i + 1));
+            tempLecture.getHomeworkRepository().add(new Homework(tempLecture.getId()));
+            tempLecture.getAdditionalMaterialRepository().add(new AdditionalMaterial(tempLecture.getId()));
+            course.getLectureRepository().add(tempLecture);
+        }
+        for(int i = 0; i < 20; i++){
+            tempStudent = new Student(course.getId());
+            tempStudent.setName("Student" + (i + 1));
+            course.getStudentRepository().add(tempStudent);
+        }
+        System.out.println(bound + "Information BEFORE serialization: \ncourse -- " + course.getName()
+                + "\nlector -- " + course.getLector().getName()
+                + "\nsome lecture -- " + course.getLectureRepository().getById(5).getName()
+                + "\nsome homework -- "
+                + course.getLectureRepository().getById(6).getHomeworkRepository().getById(6)
+                + "\nsome additional material -- "
+                + course.getLectureRepository().getById(7).getAdditionalMaterialRepository().getById(7)
+                + "\nstudent -- " + course.getStudentRepository().getById(8));
+
+        ser(course);
+
+        Course savedCourse = deSer();
+
+        System.out.println(bound + "Information AFTER serialization: \ncourse -- " + savedCourse.getName()
+                + "\nlector -- " + savedCourse.getLector().getName()
+                + "\nsome lecture -- " + savedCourse.getLectureRepository().getById(5).getName()
+                + "\nsome homework -- "
+                + savedCourse.getLectureRepository().getById(6).getHomeworkRepository().getById(6)
+                + "\nsome additional material -- "
+                + savedCourse.getLectureRepository().getById(7).getAdditionalMaterialRepository().getById(7)
+                + "\nstudent -- " + course.getStudentRepository().getById(8));
+
+    }
+
+    static void ser(Course course){
+        try(ObjectOutputStream objTo =
+           new ObjectOutputStream(new FileOutputStream(new File ("src/schoolOnline/course.obj")))) {
+            objTo.writeObject(course);
+        } catch(Exception e) {}
+    }
+
+    static Course deSer() {
+        try(ObjectInputStream objectFrom =
+            new ObjectInputStream(new FileInputStream(new File ("src/schoolOnline/course.obj")))){
+            return (Course) objectFrom.readObject();
+        }catch(Exception e) {}
+        return null;
+    }
 
     public static void threads(){
 

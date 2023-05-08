@@ -1,9 +1,10 @@
 package schoolOnline.entities;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class AdditionalMaterial implements Comparable<AdditionalMaterial>{
-    AdditionalMaterial(){
+public class AdditionalMaterial implements Comparable<AdditionalMaterial>, Serializable {
+    public AdditionalMaterial(){
         this.id = ++id;
     }
     public AdditionalMaterial(Integer lectureId){
