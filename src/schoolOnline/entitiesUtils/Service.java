@@ -10,6 +10,18 @@ public class Service {
 
     static String bound = "\n__________________________________________________________________\n";
 
+    public static void dates(){
+        Lecture lecture = new Lecture(10);
+        System.out.println(bound);
+        System.out.println("Log info for this lecture:\n" + lecture.getCreationDate());
+        System.out.println("\nLecture date is:\n" + lecture.getLectureDate());
+        System.out.println("\nDeadLine for homework is:\n" + lecture.getHomeworkRepository().getById(1).getDeadLine());
+
+        System.out.println(bound + "Log info about all lectures:");
+        LogService.printLogs();
+
+    }
+
     public static void serializeEverything(){
         Course course = new Course("Java");
         Lecture tempLecture;

@@ -12,7 +12,9 @@ import java.util.Arrays;
 public class Main {
     public static void main(String [] arg){
 
-        Service.serializeEverything();
+        Service.dates();
+
+        // Service.serializeEverything();
 
         // Service.threads();
 
