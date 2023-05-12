@@ -3,12 +3,10 @@ package schoolOnline.repositories;
 import schoolOnline.entities.AdditionalMaterial;
 import schoolOnline.entities.Homework;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-// Homework
-// homework
-// homeworkRepository
-public class HomeworkRepository {
+public class HomeworkRepository implements Serializable {
     private static HashMap<Integer, ArrayList<Homework>> homeworkRepository = new HashMap<>();
     //private static HashMap<Integer, ArrayList<AdditionalMaterial>> additionalMaterialMap = new HashMap<>();
     public static void setAdditionalMaterialRepository(ArrayList<Homework> homeworkRepository){

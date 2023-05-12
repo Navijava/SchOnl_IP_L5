@@ -2,18 +2,19 @@ package schoolOnline.entities;
 
 import schoolOnline.repositories.LectorRepository;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class Lector implements Comparable<Lector>{
+public class Lector implements Comparable<Lector>, Serializable {
     LectorRepository lr;
     private static int lectorCount;
     private int lectureId;
     public Lector(){
         lectorCount++;
     }
-    public Lector(String lastname){
+    public Lector(String name){
         lectorCount++;
-        this.lastname = lastname;
+        this.name = name;
     }
     public Lector(Role role, int courseId, int lectureId){
 

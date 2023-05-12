@@ -1,8 +1,9 @@
 package schoolOnline.entities;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class Homework{
+public class Homework implements Serializable {
     public Homework(){
         this.id = ++homeworkCount;
     }
