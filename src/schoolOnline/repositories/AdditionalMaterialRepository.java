@@ -58,7 +58,7 @@ public class AdditionalMaterialRepository implements Serializable {
     public static String print(){
         String result = "";
         for(int key : additionalMaterialRepository.keySet()){
-            result = result + "\nFor lecture id " + key + " additional material is:";
+            result = result + "\n\nFor lecture with id " + key + " additional material is:";
             for(int i = 0; i < additionalMaterialRepository.get(key).size(); i++){
                 result = result + additionalMaterialRepository.get(key).get(i);
             }
