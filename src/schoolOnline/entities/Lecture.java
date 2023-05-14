@@ -2,14 +2,19 @@ package schoolOnline.entities;
 
 import schoolOnline.entitiesUtils.AdditionalMaterialUtil;
 import schoolOnline.entitiesUtils.HomeworkUtil;
+import schoolOnline.entitiesUtils.LogUtil;
 import schoolOnline.repositories.AdditionalMaterialRepository;
 import schoolOnline.repositories.HomeworkRepository;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class Lecture implements Serializable {
     public Lecture(){
         this.id = ++lectureCount;
+        date();
     }
     public Lecture(int courseId){
         this.courseId = courseId;
@@ -20,10 +25,28 @@ public class Lecture implements Serializable {
         HomeworkUtil.generate(this.id);
         this.homeworkRepository = new HomeworkRepository();
         this.additionalMaterialRepository = new AdditionalMaterialRepository();
+        date();
+        this.creationDate = LogUtil.create("Lecture", 1);
     }
     private Integer id;
     private String name;
-    public String commonName;
+    private String creationDate;
+    public String getCreationDate(){
+        return this.creationDate;
+    }
+    private String lectureDate;
+    public String getLectureDate(){
+        return this.lectureDate;
+    }
+    private void date(){
+        LocalDateTime ldt = LocalDateTime.now();
+        /*
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss:SSS");
+        this.creationDate = dtf.format(ldt);
+        */
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM dd, EEEE HH:mm:ss", new Locale("en", "En"));
+        this.lectureDate = dtf.format(ldt);
+    }
     private Homework [] homeworkArr;
     private static int lectureCount;
     private String description;
@@ -83,7 +106,6 @@ public class Lecture implements Serializable {
     public Lector getLector(){
         return this.lector;
     }
-
     public String toString(){
         return "Lecture's id is " + this.id + ", and course id is " + this.courseId;
 //        return "Name of lecture is " + this.name + ", and it's lector is "
