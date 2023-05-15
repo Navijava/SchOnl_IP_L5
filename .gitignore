@@ -13,6 +13,7 @@
 # Additional added
 .idea
 out
+src/schoolOnline/entitiesUtils/Temp.java
 
 # Package Files #
 *.jar
