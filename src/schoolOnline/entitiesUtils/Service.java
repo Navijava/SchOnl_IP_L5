@@ -30,21 +30,22 @@ public class Service {
         System.out.println(bound);
 
         // Question 2:
-        List<String> namesList = List.of("Nadia", "Bob", "John", "Peter", "Ann", "Nino", "Anna", "Bobby", "Sue",
-                "Susan", "Vic", "Victoria", "Nana");
+        List<String> lastNamesList = List.of("Ignatenko", "Nadichuk", "bbb", "Johnsoniuk", "Petrenko",
+                "nnn", "Ninoska", "Annanko", "Bobriuk", "sss","Susanko", "Blajenko", "ccc", "Mictorchuk",
+                "Purjeniuk", "Nanasko");
         course1.setLectors();
-        ArrayList<String> lectorNames = new ArrayList<>();
-        namesList.stream()
-                .filter(name -> name.length() > 3)
-                .forEach(name -> {
-                    course1.getLectors().add(new Lector(name));
-                    lectorNames.add(name);
+        ArrayList<String> lectorLastnames = new ArrayList<>();
+        lastNamesList.stream()
+                .filter(lastname -> lastname.length() > 3)
+                .forEach(lastname -> {
+                    course1.getLectors().add(new Lector(lastname));
+                    lectorLastnames.add(lastname);
                 });
 
-        System.out.println("All names:\n" + lectorNames +"\nNames before \"N\":");
+        System.out.println("All lastnames:\n" + lectorLastnames +"\n\nLastnames before \"N\":");
         course1.getLectors().stream()
-                .filter(lector -> lector.getName().substring(0, 1).compareTo("N") < 0)
-                .forEach(lector -> System.out.println(lector.getName()));
+                .filter(lector -> lector.getLastname().substring(0, 1).compareTo("N") < 0)
+                .forEach(lector -> System.out.println(lector.getLastname()));
         System.out.println(bound);
 
         // To fill in log file with new logs:
