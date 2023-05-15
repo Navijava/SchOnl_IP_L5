@@ -10,7 +10,68 @@ import java.util.*;
 public class Service {
 
     static String bound = "\n__________________________________________________________________\n";
+    public static void streamsPart1(){
+        Scanner scan1 = new Scanner(System.in);
 
+        // Question 3:
+        System.out.println("All messages from log file:");
+        ArrayList<String> logList = LogService.readLogs();
+        logList.stream()
+                .filter(log -> log.contains("message"))
+                .forEach(System.out :: println);
+        System.out.println(bound);
+
+        // Question 1:
+        Course course1 = new Course("Java");
+        Course course2 = new Course();
+        System.out.println(course1.getName());
+        System.out.println(Optional.ofNullable(course2.getName())
+                .orElse("choose another course"));
+        System.out.println(bound);
+
+        // Question 2:
+        List<String> namesList = List.of("Nadia", "Bob", "John", "Peter", "Ann", "Nino", "Anna", "Bobby", "Sue",
+                "Susan", "Vic", "Victoria", "Nana");
+        course1.setLectors();
+        ArrayList<String> lectorNames = new ArrayList<>();
+        namesList.stream()
+                .filter(name -> name.length() > 3)
+                .forEach(name -> {
+                    course1.getLectors().add(new Lector(name));
+                    lectorNames.add(name);
+                });
+
+        System.out.println("All names:\n" + lectorNames +"\nNames before \"N\":");
+        course1.getLectors().stream()
+                .filter(lector -> lector.getName().substring(0, 1).compareTo("N") < 0)
+                .forEach(lector -> System.out.println(lector.getName()));
+        System.out.println(bound);
+
+        // To fill in log file with new logs:
+        Lecture lecture1 = new Lecture(course1.getId());
+        lecture1.getAdditionalMaterialRepository();
+        lecture1.getHomeworkRepository();
+        int age = 0;
+        do{
+            System.out.println("Enter your age:");
+            try {
+                age = scan1.nextInt();
+                if(age < 18) {
+                    throw new AgeException();
+                }
+            }catch(InputMismatchException e){
+                LogUtil.create("Main", Level.ERROR, "wrong data", "" + e.getStackTrace());
+                throw e;
+            }catch(AgeException e){
+                LogUtil.create("Main", Level.WARNING, e.getMessage(), "" + e.getStackTrace());
+                System.out.println("Call your mommy or daddy.");
+            }
+        }while(age < 18);
+        System.out.println("Congratulations. See you later.");
+
+        LogUtil.create("Main", Level.DEBUG, "program finishes its work", null);
+
+    }
     public static void getByDate(){
 
         Course course = new Course("Java");

@@ -2,17 +2,26 @@ package schoolOnline.entities;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 
 public class Log {
     Log(){}
-    public Log(String className, int level){
+    public Log(String className, Level level, String message, String stacktrace){
         this.name = className;
         this.level = level;
         this.data = LocalDateTime.now();
     }
+    public Log(String className, int level){
+        this.name = className;
+        this.levelOld = level;
+        this.data = LocalDateTime.now();
+    }
+
     String name;
-    int level;
+    int levelOld;
+    private Level level;
+    public Level getLevel(){
+        return this.level;
+    }
     String message;
     private LocalDateTime data;
     public String dateToWrite(){

@@ -3,6 +3,7 @@ package schoolOnline;
 import schoolOnline.entities.Lector;
 import schoolOnline.entities.Role;
 import schoolOnline.entitiesUtils.Service;
+import schoolOnline.entitiesUtils.Temp;
 import schoolOnline.repositories.LectorRepository;
 import schoolOnline.repositories.HomeworkRepository;
 import schoolOnline.repositories.AdditionalMaterialRepository;
@@ -12,9 +13,11 @@ import java.util.Arrays;
 public class Main {
     public static void main(String [] arg){
 
-        Service.getAdditionalMaterial();
+        Service.streamsPart1();
 
-        Service.getByDate();
+        // Service.getAdditionalMaterial();
+
+        // Service.getByDate();
 
         // Service.dates();
 
