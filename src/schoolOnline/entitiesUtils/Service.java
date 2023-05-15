@@ -4,11 +4,84 @@ import schoolOnline.entities.*;
 import schoolOnline.repositories.*;
 
 import java.io.*;
+import java.time.LocalDate;
 import java.util.*;
 
 public class Service {
 
     static String bound = "\n__________________________________________________________________\n";
+
+    public static void getByDate(){
+
+        Course course = new Course("Java");
+        ArrayList<Lecture> list = course.getLectureRepository().getAll();
+        Lecture tempLecture;
+        for(int i = 0; i < 10; i ++){
+            tempLecture = new Lecture(course.getId());
+            tempLecture.setSortBy(tempLecture.getSortBy().plusDays(i * 3));
+            list.add(tempLecture);
+        }
+        String str = "" + LocalDate.now().plusDays(15);
+        LocalDate ld1 = LocalDate.now().plusDays(6);
+        LocalDate ld2 = LocalDate.now().plusDays(20);
+        ShowInfo show = () -> {
+            for(int i = 0; i < list.size(); i++){
+                System.out.println(list.get(i).getSortBy());
+            }
+        };
+        ShowByPeriod show1 = (String period) -> {
+            switch(period){
+                case "after":
+                    for(int i = 0; i < list.size(); i++){
+                        if(list.get(i).getSortBy().isAfter(LocalDate.parse(str))){
+                            System.out.println(list.get(i).getSortBy());
+                        }
+                    }
+                    break;
+                case "before":
+                    for(int i = 0; i < list.size(); i++){
+                        if(list.get(i).getSortBy().isBefore(LocalDate.parse(str))){
+                            System.out.println(list.get(i).getSortBy());
+                        }
+                    }
+                    break;
+                case "between":
+                    for(int i = 0; i < list.size(); i++){
+                        if(list.get(i).getSortBy().isAfter(ld1)
+                                && list.get(i).getSortBy().isBefore(ld2)){
+                            System.out.println(list.get(i).getSortBy());
+                        }
+                    }
+                    break;
+            }
+        };
+
+        System.out.println("dates of all lectures:\n");
+        show.showEverything();
+
+        System.out.println("\n\n1. after " + str + ":\n");
+        show1.show("after");
+
+        System.out.println("\n\n2. before " + str + ":\n");
+        show1.show("before");
+
+        System.out.println("\n\n3. between " + ld1 + " and "  +ld2 + ":\n");
+        show1.show("between");
+    }
+
+    public static void getAdditionalMaterial(){
+        Course course = new Course("Java");
+        for(int i = 0; i < 5; i ++){
+            course.getLectureRepository().add(new Lecture(course.getId()));
+        }
+        ShowInfo show = () -> {
+            System.out.println(course.getLectureRepository().getById(1).getAdditionalMaterialRepository().print());
+        };
+
+        System.out.print(bound + "\nAll additional materials by lectures id:");
+        show.showEverything();
+        System.out.println(bound);
+    }
 
     public static void dates(){
         Lecture lecture = new Lecture(10);

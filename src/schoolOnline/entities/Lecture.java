@@ -7,6 +7,7 @@ import schoolOnline.repositories.AdditionalMaterialRepository;
 import schoolOnline.repositories.HomeworkRepository;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -35,11 +36,19 @@ public class Lecture implements Serializable {
         return this.creationDate;
     }
     private String lectureDate;
+    private LocalDate sortBy;
+    public void setSortBy(LocalDate sortBy){
+        this.sortBy = sortBy;
+    }
+    public LocalDate getSortBy(){
+        return this.sortBy;
+    }
     public String getLectureDate(){
         return this.lectureDate;
     }
     private void date(){
         LocalDateTime ldt = LocalDateTime.now();
+        this.sortBy = LocalDate.now();
         /*
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss:SSS");
         this.creationDate = dtf.format(ldt);
