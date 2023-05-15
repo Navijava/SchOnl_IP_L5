@@ -85,6 +85,61 @@ public class Service {
             answer = scan2.nextLine();
         }while(answer.equals("y"));
 
+        answer = "";
+        do {
+            System.out.println("\nWhat kind of ALL TIME log information you wish to see\n1. Log dates." +
+                    "\n2. Log levels.\n3. Log names.\n4. Log messages.\n5. Log Stacktraces." +
+                    "\n6. Just finish.\nInput number and press enter.");
+            scan1 = new Scanner(System.in);
+            int temp = -1;
+            ArrayList<String> logsList = LogService.readLogs();
+            do {
+                try {
+                    temp = scan1.nextInt();
+                } catch (Exception e) {
+                    System.out.println("Wrong data, try again.");
+                    scan1 = new Scanner(System.in);
+                }
+                if (temp < 1 || temp > 6) {
+                    System.out.println("Make correct choice.");
+                }
+            } while (temp < 1 || temp > 6);
+            switch (temp) {
+                case 1:
+                    logsList.stream()
+                            .filter(log -> log.contains("Date"))
+                            .forEach(System.out :: println);
+                    break;
+                case 2:
+                    logsList.stream()
+                            .filter(log -> log.contains("level"))
+                            .forEach(System.out :: println);
+                    break;
+                case 3:
+                    logsList.stream()
+                            .filter(log -> log.contains("class"))
+                            .forEach(System.out :: println);
+                    break;
+                case 4:
+                    logsList.stream()
+                            .filter(log -> log.contains("message"))
+                            .forEach(System.out :: println);
+                    break;
+                case 5:
+                    logsList.stream()
+                            .filter(log -> log.contains("stacktrace"))
+                            .forEach(System.out :: println);
+                    break;
+                case 6:
+                    System.out.println("Have a nice day.");
+                    System.exit(10);
+                default:
+                    System.out.println("Something go wrong...");
+            }
+            System.out.println("To continue input \"y\" and press enter, to finish input whatever and " +
+                    "press enter");
+            answer = scan2.nextLine();
+        }while(answer.equals("y"));
     }
     public static void streamsPart1(){
         Scanner scan1 = new Scanner(System.in);
