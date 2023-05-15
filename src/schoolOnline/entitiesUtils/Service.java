@@ -10,6 +10,82 @@ import java.util.*;
 public class Service {
 
     static String bound = "\n__________________________________________________________________\n";
+    public static void logAtLast(){
+        Scanner scan1 = new Scanner(System.in);
+        Course course1 = new Course("Java");
+        // To fill in log file with new logs:
+        Lecture lecture1 = new Lecture(course1.getId());
+        lecture1.getAdditionalMaterialRepository();
+        lecture1.getHomeworkRepository();
+        int age = 0;
+        do{
+            System.out.println("Enter your age:");
+            try {
+                age = scan1.nextInt();
+                if(age < 18) {
+                    throw new AgeException();
+                }
+            }catch(InputMismatchException e){
+                LogUtil.create("Main", Level.ERROR, "wrong data", "" + e.getStackTrace());
+                System.err.println("wrong data");
+                scan1 = new Scanner(System.in);
+            }catch(AgeException e){
+                LogUtil.create("Main", Level.WARNING, e.getMessage(), "" + e.getStackTrace());
+                System.out.println("Call your mommy or daddy.");
+            }
+        }while(age < 18);
+        System.out.println("Congratulations. See you later.");
+
+        LogUtil.create("Main", Level.DEBUG, "program finishes its work", null);
+        System.out.println("All actual logs:\n" + LogUtil.getLogs());
+
+        Scanner scan2 = new Scanner(System.in);
+        String answer = "";
+        do {
+            System.out.println("\nWhat kind of log information you wish to see\n1. Log dates.\n2. Log levels." +
+                    "\n3. Log names.\n4. Log messages.\n5. Log Stacktraces.\n6. Just finish." +
+                    "\nInput number and press enter.");
+            scan1 = new Scanner(System.in);
+            int temp = -1;
+            do {
+                try {
+                    temp = scan1.nextInt();
+                } catch (Exception e) {
+                    System.out.println("Wrong data, try again.");
+                    scan1 = new Scanner(System.in);
+                }
+                if (temp < 1 || temp > 6) {
+                    System.out.println("Make correct choice.");
+                }
+            } while (temp < 1 || temp > 6);
+            switch (temp) {
+                case 1:
+                    LogUtil.getLogs().stream().forEach(log -> System.out.println(log.getDate()));
+                    break;
+                case 2:
+                    LogUtil.getLogs().stream().forEach(log -> System.out.println(log.getLevel()));
+                    break;
+                case 3:
+                    LogUtil.getLogs().stream().forEach(log -> System.out.println(log.getName()));
+                    break;
+                case 4:
+                    LogUtil.getLogs().stream().forEach(log -> System.out.println(log.getMessage()));
+                    break;
+                case 5:
+                    LogUtil.getLogs().stream().forEach(log -> System.out.println(log.getStacktrace()));
+                    break;
+                case 6:
+                    System.out.println("Have a nice day.");
+                    System.exit(10);
+                default:
+                    System.out.println("Something go wrong...");
+            }
+            System.out.println("To continue input \"y\" and press enter, to finish input whatever and " +
+                    "press enter");
+            answer = scan2.nextLine();
+        }while(answer.equals("y"));
+
+    }
     public static void streamsPart1(){
         Scanner scan1 = new Scanner(System.in);
 
