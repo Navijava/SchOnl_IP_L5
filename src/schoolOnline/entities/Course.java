@@ -1,6 +1,7 @@
 package schoolOnline.entities;
 
 import schoolOnline.repositories.LectureRepository;
+import schoolOnline.repositories.PersonRepository;
 import schoolOnline.repositories.StudentRepository;
 
 import java.io.Serializable;

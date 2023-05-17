@@ -7,31 +7,31 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AdditionalMaterialRepository implements Serializable {
-    private static HashMap<Integer, ArrayList<AdditionalMaterial>> additionalMaterialRepository = new HashMap<>();
+    private static HashMap<Integer, ArrayList<AdditionalMaterial>> additionalMaterialMap = new HashMap<>();
     //private static HashMap<Integer, ArrayList<AdditionalMaterial>> additionalMaterialMap = new HashMap<>();
-    public static void setAdditionalMaterialRepository(ArrayList<AdditionalMaterial> additionalMaterialRepository){
-        additionalMaterialRepository = additionalMaterialRepository;
+    public static void setAdditionalMaterialMap(ArrayList<AdditionalMaterial> additionalMaterialMap){
+        additionalMaterialMap = additionalMaterialMap;
     }
-    public static HashMap<Integer, ArrayList<AdditionalMaterial>> getAdditionalMaterialRepository(){
-        return additionalMaterialRepository;
+    public static HashMap<Integer, ArrayList<AdditionalMaterial>> getAdditionalMaterialMap(){
+        return additionalMaterialMap;
     }
 
     public static boolean add(AdditionalMaterial additionalMaterial){
         if (additionalMaterial == null) {
             return false;
         }
-        if(additionalMaterialRepository.get(additionalMaterial.getLectureId()) == null){
-            additionalMaterialRepository.put(additionalMaterial.getLectureId(), new ArrayList<AdditionalMaterial>());
+        if(additionalMaterialMap.get(additionalMaterial.getLectureId()) == null){
+            additionalMaterialMap.put(additionalMaterial.getLectureId(), new ArrayList<AdditionalMaterial>());
         }
-        additionalMaterialRepository.get(additionalMaterial.getLectureId()).add(additionalMaterial);
+        additionalMaterialMap.get(additionalMaterial.getLectureId()).add(additionalMaterial);
         return true;
     }
     public static AdditionalMaterial getById(Integer id){
-        for(Integer key : additionalMaterialRepository.keySet()){
-            for (int i = 0; i < additionalMaterialRepository.get(key).size(); i++){
-                if(additionalMaterialRepository.get(key).get(i) != null
-                        && additionalMaterialRepository.get(key).get(i).getId() == id) {
-                    return additionalMaterialRepository.get(key).get(i);
+        for(Integer key : additionalMaterialMap.keySet()){
+            for (int i = 0; i < additionalMaterialMap.get(key).size(); i++){
+                if(additionalMaterialMap.get(key).get(i) != null
+                        && additionalMaterialMap.get(key).get(i).getId() == id) {
+                    return additionalMaterialMap.get(key).get(i);
                 }
             }
         }
@@ -43,11 +43,11 @@ public class AdditionalMaterialRepository implements Serializable {
     }
 
     public static boolean removeById(Integer id){
-        for(Integer key : additionalMaterialRepository.keySet()){
-            for (int i = 0; i < additionalMaterialRepository.get(key).size(); i++){
-                if(additionalMaterialRepository.get(key).get(i) != null
-                        && additionalMaterialRepository.get(key).get(i).getId() == id) {
-                    additionalMaterialRepository.get(key).remove(i);
+        for(Integer key : additionalMaterialMap.keySet()){
+            for (int i = 0; i < additionalMaterialMap.get(key).size(); i++){
+                if(additionalMaterialMap.get(key).get(i) != null
+                        && additionalMaterialMap.get(key).get(i).getId() == id) {
+                    additionalMaterialMap.get(key).remove(i);
                     return true;
                 }
             }
@@ -57,10 +57,10 @@ public class AdditionalMaterialRepository implements Serializable {
 
     public static String print(){
         String result = "";
-        for(int key : additionalMaterialRepository.keySet()){
+        for(int key : additionalMaterialMap.keySet()){
             result = result + "\n\nFor lecture with id " + key + " additional material is:";
-            for(int i = 0; i < additionalMaterialRepository.get(key).size(); i++){
-                result = result + additionalMaterialRepository.get(key).get(i);
+            for(int i = 0; i < additionalMaterialMap.get(key).size(); i++){
+                result = result + additionalMaterialMap.get(key).get(i);
             }
         }
         return result;

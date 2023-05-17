@@ -29,6 +29,19 @@ public class Lecture implements Serializable {
         date();
         this.creationDate = LogUtil.create("Lecture", Level.INFO, "lecture created", null);
     }
+    public Lecture(int courseId, String courseName){
+        this.courseId = courseId;
+        this.courseName = courseName;
+        this.id = ++lectureCount;
+        this.lector = new Lector(Role.LECTOR, courseId, id);
+        homeworkArr = new Homework[16];
+        AdditionalMaterialUtil.generate(this.id);
+        HomeworkUtil.generate(this.id);
+        this.homeworkRepository = new HomeworkRepository();
+        this.additionalMaterialRepository = new AdditionalMaterialRepository();
+        date();
+        this.creationDate = LogUtil.create("Lecture", Level.INFO, "lecture created", null);
+    }
     private Integer id;
     private String name;
     private String creationDate;
@@ -61,6 +74,10 @@ public class Lecture implements Serializable {
     private String description;
     private int courseId;
     private int personId;
+    private String courseName;
+    public String getCourseName(){
+        return this.courseName;
+    }
     private Lector lector;
     /*public void addHomework(Homework homework){
         HomeworkUtil.add(homeworkArr, homework);
@@ -118,7 +135,9 @@ public class Lecture implements Serializable {
         return this.lector;
     }
     public String toString(){
-        return "Lecture's id is " + this.id + ", and course id is " + this.courseId;
+        return "Lecture's id is " + this.id + ", course id is " + this.courseId
+                + ((courseName == null) ? "" : ", course name is " + this.courseName)
+                + ", date of lecture creation is " + sortBy + ".";
 //        return "Name of lecture is " + this.name + ", and it's lector is "
 //                + this.lector;
     }
