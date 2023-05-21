@@ -1,10 +1,17 @@
 package schoolOnline.entities;
 
+import java.util.ArrayList;
+
 public class Person {
     public Person(){}
     public Person(Role role, int courseId){
         this.role = role;
         this.courseId = courseId;
+    }
+    public Person(Role role, int courseId, String email){
+        this.role = role;
+        this.courseId = courseId;
+        this.email = email;
     }
 
     private String firstname;

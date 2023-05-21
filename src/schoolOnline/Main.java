@@ -13,7 +13,11 @@ import java.util.Arrays;
 public class Main {
     public static void main(String [] arg){
 
-        Service.logAtLast();
+        Service.lesson31();
+
+        //Temp.temp();
+
+        // Service.logAtLast();
 
         // Service.streamsPart1();
 

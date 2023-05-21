@@ -10,6 +10,77 @@ import java.util.*;
 public class Service {
 
     static String bound = "\n__________________________________________________________________\n";
+   public static void lesson31(){
+        Course course1 = new Course("Java");
+        System.out.println(bound);
+
+        //Question 1:
+        System.out.println(PersonRepository.addPerson(new Person(Role.STUDENT, course1.getId(), "study@ed.ua"))
+                ? "person was added" : "email already exists, person wasn't added");
+        System.out.println(PersonRepository.addPerson(new Person(Role.LECTOR, course1.getId(), "study1@ed.ua"))
+                ? "person was added" : "email already exists, person wasn't added");
+        System.out.println(PersonRepository.addPerson(new Person(Role.STUDENT, course1.getId(), "study2@ed.ua"))
+                ? "person was added" : "email already exists, person wasn't added");
+        System.out.println(PersonRepository.addPerson(new Person(Role.STUDENT, course1.getId(), "study@ed.ua"))
+                ? "person was added" : "email already exists, person wasn't added");
+        System.out.println(PersonRepository.addPerson(new Person(Role.LECTOR, course1.getId(), "study2@ed.ua"))
+                ? "person was added" : "email already exists, person wasn't added");
+        System.out.println(PersonRepository.addPerson(new Person(Role.LECTOR, course1.getId(), "study3@ed.ua"))
+                ? "person was added" : "email already exists, person wasn't added");
+
+        //Question 2:
+        Lecture tempLecture = null;
+        for(int i = 0; i < (new Random().nextInt(5, 12)); i++) {
+            tempLecture = new Lecture(course1.getId(), course1.getName());
+            tempLecture.setSortBy(tempLecture.getSortBy().plusDays(i * 3));
+            course1.getLectureRepository().add(tempLecture);
+        }
+        final ArrayList<Lecture> tempList = course1.getLectureRepository().getAll();
+
+        int filter = tempList.stream()
+                .map(lecture -> lecture.getAdditionalMaterialRepository().getAdditionalMaterialMap().get(lecture.getId()).size())
+                .max(Integer :: compareTo)
+                .orElseThrow();
+        System.out.println(bound + "the highest number of additional material is -- " + filter);
+        LocalDate tempLD = null;
+        tempLecture = null;
+        for(Lecture lec : tempList){
+            if(lec.getAdditionalMaterialRepository().getAdditionalMaterialMap().get(lec.getId()).size() == filter){
+                if(tempLecture == null){
+                    tempLecture = lec;
+                }else if(tempLecture.getSortBy().isAfter(lec.getSortBy())){
+                    tempLecture = lec;
+                }
+            }
+        }
+        System.out.println("first lecture with highest number of additional material ("
+                + tempLecture.getAdditionalMaterialRepository().getAdditionalMaterialMap().get(tempLecture.getId()).size()
+                + ") was created " + tempLecture.getSortBy() + "\nLecture itself:\n" + tempLecture + bound);
+        // for self-check:
+        System.out.println("here list of all lectures with number of additional materials and dates of creation for self-check:\n");
+        tempList.stream()
+                .forEach(lec -> {
+                    System.out.println("additional material size -- "
+                            + lec.getAdditionalMaterialRepository().getAdditionalMaterialMap().get(lec.getId()).size()
+                            + "\ndate of its lecture -- " + lec.getSortBy() + "\n");
+                });
+
+        //Question 3:
+        ArrayList<String> logList = LogService.readLogs();
+        int count = 0;
+        int allInfo = (int) logList.stream()
+                .filter(str -> str.contains("INFO"))
+                .count();
+        for(int i = logList.size() / 2; i < logList.size(); i++){
+            if(logList.get(i).contains("INFO")){
+                count++;
+            }
+        }
+
+        System.out.println(bound + "All logs with level INFO is -- " + allInfo
+                + "\nand logs with level INFO from half of the file -- " + count);
+
+    }
     public static void logAtLast(){
         Scanner scan1 = new Scanner(System.in);
         Course course1 = new Course("Java");
@@ -990,7 +1061,7 @@ public class Service {
                         int addMatId = scan1.nextInt();
                         System.out.println(AdditionalMaterialRepository.getById(addMatId)
                                 + "\nAll additional materials:\n" +
-                                AdditionalMaterialRepository.getAdditionalMaterialRepository());
+                                AdditionalMaterialRepository.getAdditionalMaterialMap());
 
                     }catch(Exception e){
                         scan1 = new Scanner(System.in);
