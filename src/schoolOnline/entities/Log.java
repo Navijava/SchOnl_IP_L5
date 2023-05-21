@@ -9,6 +9,8 @@ public class Log {
         this.name = className;
         this.level = level;
         this.data = LocalDateTime.now();
+        this.message = message;
+        this.stacktrace = ((stacktrace == null) ? " is absent.\n" : (stacktrace + ".\n"));
     }
     public Log(String className, int level){
         this.name = className;
@@ -16,14 +18,24 @@ public class Log {
         this.data = LocalDateTime.now();
     }
 
-    String name;
+    private String name;
+    public String getName(){
+        return this.name;
+    }
     int levelOld;
     private Level level;
     public Level getLevel(){
         return this.level;
     }
-    String message;
+    private String message;
+    public String getMessage(){
+        return this.message;
+    }
     private LocalDateTime data;
+    public LocalDateTime getDate(){
+        return this.data;
+    }
+
     public String dateToWrite(){
         LocalDateTime ldt = LocalDateTime.now();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss:SSS");
@@ -34,6 +46,14 @@ public class Log {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss:SSS");
         // this.data = dtf.format(ldt);
     }
-    String stacktrace;
+    private String stacktrace;
+    public String getStacktrace(){
+        return this.stacktrace;
+    }
+    public String toString(){
+        return "\rDate - " + this.data + "\nlevel - " + this.level + "\nclass - "
+                + this.name + "\nmessage - " + this.message
+                + "\nstacktrace - " + this.stacktrace + "\n";
+    }
 
 }
