@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class Service {
 
     static String bound = "\n__________________________________________________________________\n";
-    public static void lesson32(){
+  public static void lesson32(){
         System.out.println(bound);
 
         Course course1 = new Course("Java");
