@@ -10,7 +10,7 @@ import java.util.*;
 public class Service {
 
     static String bound = "\n__________________________________________________________________\n";
-    public static void lesson31(){
+   public static void lesson31(){
         Course course1 = new Course("Java");
         System.out.println(bound);
 
