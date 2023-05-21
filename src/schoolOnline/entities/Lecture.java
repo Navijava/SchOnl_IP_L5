@@ -27,7 +27,7 @@ public class Lecture implements Serializable {
         this.homeworkRepository = new HomeworkRepository();
         this.additionalMaterialRepository = new AdditionalMaterialRepository();
         date();
-        this.creationDate = LogUtil.create("Lecture", 1);
+        this.creationDate = LogUtil.create("Lecture", Level.INFO, "lecture created", null);
     }
     private Integer id;
     private String name;
@@ -76,10 +76,12 @@ public class Lecture implements Serializable {
     }
     private HomeworkRepository homeworkRepository;
     public HomeworkRepository getHomeworkRepository(){
+        LogUtil.create("Lecture", Level.DEBUG, "get homework", null);
         return this.homeworkRepository;
     }
     private AdditionalMaterialRepository additionalMaterialRepository;
     public AdditionalMaterialRepository getAdditionalMaterialRepository(){
+        LogUtil.create("Lecture", Level.DEBUG, "get additional material", null);
         return this.additionalMaterialRepository;
     }
     public void setName(String name){

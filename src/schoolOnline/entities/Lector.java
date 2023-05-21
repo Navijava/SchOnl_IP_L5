@@ -12,9 +12,13 @@ public class Lector implements Comparable<Lector>, Serializable {
     public Lector(){
         lectorCount++;
     }
-    public Lector(String name){
+//    public Lector(String name){
+//        lectorCount++;
+//        this.name = name;
+//    }
+    public Lector(String lastname){
         lectorCount++;
-        this.name = name;
+        this.lastname = lastname;
     }
     public Lector(Role role, int courseId, int lectureId){
 
@@ -78,7 +82,6 @@ public class Lector implements Comparable<Lector>, Serializable {
     public String getName(){
         return this.name;
     }
-
     private int age;
     public void setAge(int age){
         this.age = age;

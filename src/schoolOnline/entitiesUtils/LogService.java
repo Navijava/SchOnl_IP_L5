@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LogService {
-    //static File fl = new File("");
     public static void logWriteDate(String data) {
         try (OutputStream out = new FileOutputStream("src/schoolOnline/creationDate.log", true);
              Writer file = new OutputStreamWriter(out)) {
@@ -19,6 +18,11 @@ public class LogService {
         List<String> strings = Files.readAllLines(Paths.get("src/schoolOnline/creationDate.log"));
         strings.forEach(a -> System.out.println(a));
         }catch(java.io.IOException e){}
-
+    }
+    public static ArrayList<String> readLogs(){
+        try {
+            return (ArrayList<String>) Files.readAllLines(Paths.get("src/schoolOnline/creationDate.log"));
+        }catch(java.io.IOException e){}
+        return null;
     }
 }

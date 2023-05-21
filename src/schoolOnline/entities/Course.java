@@ -34,6 +34,12 @@ public class Course implements Comparable<Course>, Serializable {
         return this.lector;
     }
     private ArrayList<Lector> lectors;
+    public void setLectors(){
+        this.lectors = new ArrayList<>();
+    }
+    public ArrayList<Lector> getLectors(){
+        return this.lectors;
+    }
     private ArrayList<Student> student;
     private ArrayList<Lecture> lecture;
     private LectureRepository lectureRepository;
