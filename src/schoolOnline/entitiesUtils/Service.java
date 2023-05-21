@@ -6,11 +6,96 @@ import schoolOnline.repositories.*;
 import java.io.*;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Service {
 
     static String bound = "\n__________________________________________________________________\n";
-   public static void lesson31(){
+  public static void lesson32(){
+        System.out.println(bound);
+
+        Course course1 = new Course("Java");
+        Lecture tempLecture;
+        for(int i = 0; i < (new Random().nextInt(6, 11)); i++){
+            tempLecture = new Lecture(course1.getId(), course1.getName());
+            course1.getLectureRepository().add(tempLecture);
+        }
+        final ArrayList<Lecture> lectureList = course1.getLectureRepository().getAll();
+
+        lectureList.get(0).getAdditionalMaterialRepository()
+                .getAdditionalMaterialMap().get(lectureList.get(0).getId());
+
+        //Question 1:
+        Map<String, List<Lecture>> lectureByLector = lectureList
+                .stream()
+                .collect(Collectors.groupingBy(lec -> lec.getLector().getName()));
+        System.out.println(lectureByLector);
+
+        System.out.println(bound);
+
+        //Question 2:
+        Map<Lecture, List<AdditionalMaterial>> addMatByLecture = lectureList
+                .stream()
+                .collect(Collectors
+                        .toMap(
+                                lec -> lec,
+                                lec -> lec.getAdditionalMaterialRepository()
+                                        .getAdditionalMaterialMap().get(lec.getId()
+                                        )));
+        System.out.println(addMatByLecture);
+
+        System.out.println(bound);
+
+        //Question 3:
+        for(int i = 0; i < 10; i++) {
+            if(i % 5 == 0) {
+                PersonRepository.addPerson(new Person(Role.LECTOR, course1.getId(),
+                        ("study" + i + "@ed.ua")));
+            } else {
+                PersonRepository.addPerson(new Person(Role.STUDENT, course1.getId(),
+                        ("study" + i + "@ed.ua")));
+            }
+        }
+
+        PersonRepository.getPersonList().stream()
+                .forEach(pers -> {
+                    int name = new Random().nextInt(1, 6);
+                    int lastname = new Random().nextInt(1, 6);
+                    pers.setName("" + TempNames.getTempName(name));
+                    pers.setLastname("" + TempLastnames.getTempLastName(lastname));
+                });
+
+        Map<String, String> persMap =
+
+                PersonRepository.getPersonList().stream()
+                        .collect(Collectors.toMap(
+                                pers -> pers.getEmail(),
+                                pers -> pers.getLastname() + " " + pers.getName()
+                        ));
+        System.out.println(persMap);
+
+        System.out.println(bound);
+
+        //Question 4:
+        PersonRepository.getPersonList().stream()
+                .filter(pers -> pers.getRole() == Role.STUDENT)
+                .map(pers -> pers.getEmail())
+                .sorted(String :: compareTo)
+                .forEach(str -> {
+                    try (OutputStream out = new FileOutputStream("src/schoolOnline/email.data", true);
+                         Writer file = new OutputStreamWriter(out)) {
+                        file.append(str + "\n");
+                    } catch (IOException e) {}
+                });
+        //for self-check:
+        System.out.println("Email data of lector and students to check info in file:\n");
+        PersonRepository.getPersonList().forEach(pers -> {
+            System.out.println(pers.getRole() + " -- " + pers.getEmail());
+        });
+
+        System.out.println(bound);
+    }
+    public static void lesson31(){
         Course course1 = new Course("Java");
         System.out.println(bound);
 
