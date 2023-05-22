@@ -11,7 +11,93 @@ import java.util.stream.Collectors;
 public class Service {
 
     static String bound = "\n__________________________________________________________________\n";
-  public static void lesson32(){
+    public static void lesson24_main(){
+
+        ArrayList<String> logLevel = LogService.readLogs("src/schoolOnline/logLevel.data");
+
+        System.out.println("Action in main");
+        LogUtil.create("Main", logLevel.get(0),
+                "program starts its work", null);
+
+        ArrayList<String> nextLevel = new ArrayList<>(logLevel);
+        nextLevel.remove(0); // log level up, log are written for current level and higher
+        Service.lesson24_someUtil(nextLevel);
+
+        System.out.println("Finish action in main.");
+        LogUtil.create("Main", logLevel.get(logLevel.size() - 1),
+                "program finishes its work", null);
+    }
+    public static void lesson24_someUtil(ArrayList<String> logLevel){
+
+        System.out.println("Action with SomeEntity.");
+        LogUtil.create("SomeEntity", logLevel.get(0), "running program", null);
+        System.out.println("Action in SomeUtil.");
+        LogUtil.create("SomeUtil", logLevel.get(0), "someAction", null);
+        ArrayList<String> nextLevel = new ArrayList<>(logLevel);
+        nextLevel.remove(0); // log level up, log are written for current level and higher
+
+        try{
+            throw new RuntimeException();
+        }catch(Exception e){
+            System.out.println("Warning in SomeUtil.");
+            LogUtil.create("SomeUtil1", nextLevel.get(0),
+                    "incorrect data", "" + e.getStackTrace());
+            ArrayList<String> nextLevel1 = new ArrayList<>(nextLevel);
+            nextLevel1.remove(0); //log level up, log are written for current level and higher
+
+            lesson24LogTry(nextLevel); //changing log-file by adding named custom logs
+
+            try{
+                throw new RuntimeException();
+            }catch(Exception e1){
+                System.out.println("Error in SomeUtil.");
+                LogUtil.create("SomeUtil", nextLevel1.get(0),
+                        "fatal error", "" + e.getStackTrace());
+                ArrayList<String> nextLevel2 = new ArrayList(nextLevel1);
+                nextLevel2.remove(0);
+
+                System.out.println("Finish action in SomeUtil.");
+                LogUtil.create("SomeUtil1", nextLevel2.get(0),
+                        "program finishes its work", null);
+            }
+        }
+    }
+
+
+    public static void lesson24LogTry(ArrayList<String> nextLevel){
+        Scanner scan1 = new Scanner(System.in);
+        System.out.println("If you have any idea how to repair enter \"y\", " +
+                "or input whatever to continue.");
+        String answer = scan1.nextLine();
+        if(answer.equals("y")){
+            System.out.println("enter your name");
+            answer = scan1.nextLine();
+            nextLevel.add("CUSTOM_LOG_" + answer);
+            LogService.customLogWriteDataNio("\nCUSTOM_LOG_" + answer); // write custom named log to file
+            lesson24_anotherUtil(nextLevel);
+        }
+    }
+
+    public static void lesson24_anotherUtil(ArrayList<String> logLevel){
+        System.out.println("Action in AnotherUtil.");
+        LogUtil.create("AnotherUtil", logLevel.get(logLevel.size() - 1),
+                "custom try", null);
+        lesson24_someUtil2(logLevel);
+
+    }
+
+    public static void lesson24_someUtil2(ArrayList<String> logLevel){
+        try{
+            throw new RuntimeException();
+        }catch(Exception e){
+            System.out.println("Warning in SomeUtil2.");
+            LogUtil.create("SomeUtil2", logLevel.get(0),
+                    "again incorrect data", "" + e.getStackTrace());
+            lesson24LogTry(logLevel);
+        }
+    }
+
+    public static void lesson32(){
         System.out.println(bound);
 
         Course course1 = new Course("Java");

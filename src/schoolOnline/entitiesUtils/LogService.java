@@ -3,6 +3,7 @@ package schoolOnline.entitiesUtils;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,5 +25,23 @@ public class LogService {
             return (ArrayList<String>) Files.readAllLines(Paths.get("src/schoolOnline/creationDate.log"));
         }catch(java.io.IOException e){}
         return null;
+    }
+    public static ArrayList<String> readLogs(String path){
+        try {
+            return (ArrayList<String>) Files.readAllLines(Paths.get(path));
+        }catch(java.io.IOException e){}
+        return null;
+    }
+    public static void logWriteDataNio(String data){
+        try {
+            Files.write(Paths.get("src/schoolOnline/lesson24_logs.log"),
+                    (data + "\n").getBytes(), StandardOpenOption.APPEND);
+        } catch (IOException e) {}
+    }
+    public static void customLogWriteDataNio(String data){
+        try {
+            Files.write(Paths.get("src/schoolOnline/logLevel.data"),
+                    (data + "\n").getBytes(), StandardOpenOption.APPEND);
+        } catch (IOException e) {}
     }
 }

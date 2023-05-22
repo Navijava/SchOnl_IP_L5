@@ -5,6 +5,7 @@ import schoolOnline.entities.Role;
 import schoolOnline.entitiesUtils.Service;
 import schoolOnline.entitiesUtils.Temp;
 import schoolOnline.entitiesUtils.Temp1;
+import schoolOnline.entitiesUtils.Temp2;
 import schoolOnline.repositories.LectorRepository;
 import schoolOnline.repositories.HomeworkRepository;
 import schoolOnline.repositories.AdditionalMaterialRepository;
@@ -14,11 +15,13 @@ import java.util.Arrays;
 public class Main {
     public static void main(String [] arg){
 
-        Service.lesson32();
+        Service.lesson24_main();
+
+        //Service.lesson32();
 
         //Service.lesson31();
 
-        //Temp1.temp1();
+        //Temp.temp();
 
         // Service.logAtLast();
 
