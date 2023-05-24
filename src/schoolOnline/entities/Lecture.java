@@ -2,6 +2,7 @@ package schoolOnline.entities;
 
 import schoolOnline.entitiesUtils.AdditionalMaterialUtil;
 import schoolOnline.entitiesUtils.HomeworkUtil;
+import schoolOnline.entitiesUtils.LogService;
 import schoolOnline.entitiesUtils.LogUtil;
 import schoolOnline.repositories.AdditionalMaterialRepository;
 import schoolOnline.repositories.HomeworkRepository;
@@ -10,6 +11,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class Lecture implements Serializable {
@@ -39,9 +41,14 @@ public class Lecture implements Serializable {
         HomeworkUtil.generate(this.id);
         this.homeworkRepository = new HomeworkRepository();
         this.additionalMaterialRepository = new AdditionalMaterialRepository();
+        this.loggerRead =  LogService.readLogs("src/schoolOnline/logLevel.data");
+
         date();
-        this.creationDate = LogUtil.create("Lecture", Level.INFO, "lecture created", null);
+        this.creationDate = LogUtil.create("Lecture",
+                Level.INFO, "lecture created", null);
+                //Level.valueOf(loggerRead.get(1)), "lecture created", null);
     }
+    private ArrayList<String> loggerRead;
     private Integer id;
     private String name;
     private String creationDate;

@@ -27,5 +27,14 @@ public class LogUtil {
         LogService.logWriteDate(dataToWrite);
         return dateToWrite;
     }
+    public static void create(String className, String levels, String message, String stacktrace){
+        Log log = new Log(className, levels, message, stacktrace);
+        logArr.add(log);
+        String dateToWrite = log.dateToWrite();
+        String dataToWrite = "Date - " + dateToWrite + "\nlevel - " + levels + "\nclass - "
+                + className + "\nmessage - " + message
+                + "\nstacktrace - " + ((stacktrace == null) ? " is absent.\n" : (stacktrace + ".\n"));
+        LogService.logWriteDataNio(dataToWrite);
+    }
     public static void read(){}
 }

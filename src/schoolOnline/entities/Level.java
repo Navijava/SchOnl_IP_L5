@@ -1,8 +1,10 @@
 package schoolOnline.entities;
 
 public enum Level {
-    ERROR,
-    WARNING,
+    DEBUG,
     INFO,
-    DEBUG
+    WARNING,
+    ERROR,
+    OFF
+
 }

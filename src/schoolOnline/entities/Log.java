@@ -5,6 +5,13 @@ import java.time.format.DateTimeFormatter;
 
 public class Log {
     Log(){}
+    public Log(String className, String levelS, String message, String stacktrace){
+        this.name = className;
+        this.levelS = levelS;
+        this.data = LocalDateTime.now();
+        this.message = message;
+        this.stacktrace = ((stacktrace == null) ? " is absent.\n" : (stacktrace + ".\n"));
+    }
     public Log(String className, Level level, String message, String stacktrace){
         this.name = className;
         this.level = level;
@@ -26,6 +33,10 @@ public class Log {
     private Level level;
     public Level getLevel(){
         return this.level;
+    }
+    private String levelS;
+    public String getLevelS(){
+        return this.levelS;
     }
     private String message;
     public String getMessage(){

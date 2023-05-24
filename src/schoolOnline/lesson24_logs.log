@@ -1,0 +1,66 @@
+Date - 22-05-2023 08:03:46:160
+level - DEBUG
+class - Main
+message - program starts its work
+stacktrace -  is absent.
+
+Date - 22-05-2023 08:03:46:205
+level - INFO
+class - SomeEntity
+message - running program
+stacktrace -  is absent.
+
+Date - 22-05-2023 08:03:46:205
+level - INFO
+class - SomeUtil
+message - someAction
+stacktrace -  is absent.
+
+Date - 22-05-2023 08:03:46:205
+level - WARNING
+class - SomeUtil1
+message - incorrect data
+stacktrace - [Ljava.lang.StackTraceElement;@5910e440.
+
+Date - 22-05-2023 08:03:53:450
+level - CUSTOM_LOG_bill
+class - AnotherUtil
+message - custom try
+stacktrace -  is absent.
+
+Date - 22-05-2023 08:03:53:450
+level - WARNING
+class - SomeUtil2
+message - again incorrect data
+stacktrace - [Ljava.lang.StackTraceElement;@443b7951.
+
+Date - 22-05-2023 08:03:57:460
+level - CUSTOM_LOG_nick
+class - AnotherUtil
+message - custom try
+stacktrace -  is absent.
+
+Date - 22-05-2023 08:03:57:460
+level - WARNING
+class - SomeUtil2
+message - again incorrect data
+stacktrace - [Ljava.lang.StackTraceElement;@14514713.
+
+Date - 22-05-2023 08:03:59:950
+level - ERROR
+class - SomeUtil
+message - fatal error
+stacktrace - [Ljava.lang.StackTraceElement;@69663380.
+
+Date - 22-05-2023 08:03:59:950
+level - OFF
+class - SomeUtil1
+message - program finishes its work
+stacktrace -  is absent.
+
+Date - 22-05-2023 08:03:59:950
+level - OFF
+class - Main
+message - program finishes its work
+stacktrace -  is absent.
+
