@@ -15,7 +15,7 @@ import java.util.Arrays;
 public class Main {
     public static void main(String [] arg){
 
-        Service.lesson24_main();
+        //Service.lesson24_main();
 
         //Service.lesson32();
 
@@ -37,7 +37,7 @@ public class Main {
 
         // Service.threads();
 
-        // Service.findInfo();
+        //Service.findInfo();
 
         // Service.sortEverything();
 

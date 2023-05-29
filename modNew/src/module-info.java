@@ -1,0 +1,3 @@
+module modNew {
+    requires bservN;
+}
