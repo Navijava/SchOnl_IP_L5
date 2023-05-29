@@ -4,6 +4,7 @@ import schoolOnline.entities.Level;
 import schoolOnline.entities.Log;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class LogUtil {
     private static ArrayList<Log> logArr = new ArrayList<>();
@@ -30,6 +31,20 @@ public class LogUtil {
         LogService.logWriteDate(dataToWrite);
         return dateToWrite;
     }
+    public static String create(String className, Level level, String message,
+                                String stacktrace, String test){
+        if(className == null){
+            throw new IllegalArgumentException();
+        }
+        Log log = new Log(className, level, message, stacktrace, test);
+        logArr.add(log);
+        String dateToWrite = log.dateToWrite();
+        String dataToWrite = "Date - " + dateToWrite + "\nlevel - " + level + "\nclass - "
+                + className + "\nmessage - " + message
+                + "\nstacktrace - " + ((stacktrace == null) ? " is absent.\n" : (stacktrace + ".\n"));
+        LogService.logWriteDate(dataToWrite);
+        return dateToWrite;
+    }
     public static void create(String className, String levels, String message, String stacktrace){
         Log log = new Log(className, levels, message, stacktrace);
         logArr.add(log);
@@ -40,4 +55,11 @@ public class LogUtil {
         LogService.logWriteDataNio(dataToWrite);
     }
     public static void read(){}
+    public static Boolean outerAddLog(Log log){
+        if(Objects.isNull(log)){
+            return false;
+        }
+        logArr.add(log);
+        return true;
+    }
 }
