@@ -10,5 +10,6 @@
     <orderEntry type="module" module-name="apiN" />
     <orderEntry type="module" module-name="apiN" />
     <orderEntry type="module" module-name="bservN" />
+    <orderEntry type="module" module-name="dalN" />
   </component>
 </module>

@@ -18,6 +18,9 @@ public class LogUtil {
         return dateToWrite;
     }
     public static String create(String className, Level level, String message, String stacktrace){
+        if(className == null){
+            throw new IllegalArgumentException();
+        }
         Log log = new Log(className, level, message, stacktrace);
         logArr.add(log);
         String dateToWrite = log.dateToWrite();

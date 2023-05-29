@@ -1,13 +1,18 @@
 package service;
 
 import entities.Lecture;
+//import human.Person;
+import human.Person;
+import human.Personality;
+//import human.Student;
+import human.Student;
 import repositories.LectureRepository;
+
 
 public class Service {
     private static String bound = "\n________________________________________________";
     public static void simulator(){
         LectureRepository lectureRepository = new LectureRepository();
-        System.out.println(bound);
         for(int i = 0; i < 11; i++) {
             LectureUtil.addLecture(new Lecture((i + 1), ("lecture_" + (i + 1))), lectureRepository);
         }
@@ -31,6 +36,26 @@ public class Service {
                     break;
             }
         }while (var1 != 6);
+
+        Person pers = new Person(28, "Ann");
+        pers.introduce();
+        Personality pers1 = new Person();
+        pers1.introduce();
+        Personality pers2 = new Student();
+        pers2.introduce();
+
+        Personality pers5 = new Personality() {
+            @Override
+            public void introduce() {
+                System.out.println("Study hard to get a good result.");
+            }
+        };
+        pers5.introduce();
+
+        Personality pers3 = pers1 :: introduce;
+        Personality pers4 = pers2 :: introduce;
+        pers3.introduce();
+        pers4.introduce();
 
         System.out.println("Have a nice day!");
     }

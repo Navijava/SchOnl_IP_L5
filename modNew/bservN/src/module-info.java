@@ -1,6 +1,12 @@
 module bservN {
-    requires dalN;
+    requires transitive dalN;
+
+    //exports human;
+
+    //requires dalN;
     requires apiN;
 
-    exports service;
+    uses human.Personality;
+
+    exports service to modNew;
 }

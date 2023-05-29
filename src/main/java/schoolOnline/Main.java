@@ -2,6 +2,7 @@ package schoolOnline;
 
 import schoolOnline.entities.Lector;
 import schoolOnline.entities.Role;
+import schoolOnline.entities.SuperEn;
 import schoolOnline.entitiesUtils.Service;
 import schoolOnline.entitiesUtils.Temp;
 import schoolOnline.entitiesUtils.Temp1;
@@ -15,29 +16,33 @@ import java.util.Arrays;
 public class Main {
     public static void main(String [] arg){
 
-        //Service.lesson24_main();
+        /*SuperEn superEn = new SuperEn();
+        superEn.getId();
+        System.out.println(superEn);*/
 
-        //Service.lesson32();
+        // Service.lesson24_main(); // err
 
-        //Service.lesson31();
+        // Service.lesson32();
 
-        //Temp.temp();
+        // Service.lesson31(); // err
 
-        // Service.logAtLast();
+        // Temp.temp();
 
-        // Service.streamsPart1();
+        Service.logAtLast();
+
+        // Service.streamsPart1(); // err
 
         // Service.getAdditionalMaterial();
 
         // Service.getByDate();
 
-        // Service.dates();
+        // Service.dates(); // rep
 
-        // Service.serializeEverything();
+        // Service.serializeEverything(); // err
 
         // Service.threads();
 
-        //Service.findInfo();
+        // Service.findInfo();
 
         // Service.sortEverything();
 
@@ -45,9 +50,9 @@ public class Main {
 
         // Service.createValidPersons();
 
-        // Service.lectureWithHomework();
+        // Service.lectureWithHomework(); // err
 
-        // Service.types();
+        //Service.types();
 
         // Service.createValidPersons();
 
