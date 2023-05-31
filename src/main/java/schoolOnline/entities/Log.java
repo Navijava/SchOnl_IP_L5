@@ -19,12 +19,19 @@ public class Log {
         this.message = message;
         this.stacktrace = ((stacktrace == null) ? " is absent.\n" : (stacktrace + ".\n"));
     }
+    public Log(String className, Level level, String message, String stacktrace, String test){
+        this.name = className;
+        this.level = level;
+        this.dataS = dataS();
+        this.message = message;
+        this.stacktrace = ((stacktrace == null) ? " is absent.\n" : (stacktrace + ".\n"));
+    }
     public Log(String className, int level){
         this.name = className;
         this.levelOld = level;
         this.data = LocalDateTime.now();
     }
-
+    private String dataS;
     private String name;
     public String getName(){
         return this.name;
@@ -52,10 +59,10 @@ public class Log {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss:SSS");
         return dtf.format(ldt);
     }
-    private void data(){
+    private String dataS(){
         LocalDateTime ldt = LocalDateTime.now();
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss:SSS");
-        // this.data = dtf.format(ldt);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH");
+        return dtf.format(ldt);
     }
     private String stacktrace;
     public String getStacktrace(){
