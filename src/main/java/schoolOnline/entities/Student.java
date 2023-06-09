@@ -1,6 +1,7 @@
 package schoolOnline.entities;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Student implements Comparable<Student>, Serializable {
     private static int studentCount;
@@ -88,9 +89,23 @@ public class Student implements Comparable<Student>, Serializable {
    /*     return (role == Role.STUDENT) ? "Student is studying at course with id " + this.courseId + ".":
                 (role == Role.LECTOR) ? "Lector is teaching at course with id " + this.courseId + ".":
                         "Peron is unknown at course with id " + this.courseId + ".";*/
-        return "\nStudent's name is " + name;
+        //return "\nStudent's name is " + name + ".";
+        //return "\nStudent's lastname is " + lastname + ".";
+        return lastname;
     }
     public int compareTo(Student student){
         return this.lastname.compareTo(student.lastname);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lastname);
+    }
+    @Override
+    public boolean equals(Object o){
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return Objects.equals(lastname, student.lastname);
     }
 }

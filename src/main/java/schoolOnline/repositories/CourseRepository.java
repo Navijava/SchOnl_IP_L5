@@ -24,7 +24,9 @@ public class CourseRepository implements CourseRepositoryMeth {
     }
     boolean checkSpace(){
         for (int i = 0; i < courseRepository.length; i++){
-            if(courseRepository[i] == null) return true;
+            if(courseRepository[i] == null) {
+                return true;
+            }
         }
         return false;
     }
