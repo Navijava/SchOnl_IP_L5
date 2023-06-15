@@ -37,6 +37,7 @@ public class LogUtilTest {
         System.out.println("AfterAll say bye!");
     }
 
+    @Tag("RUN")
     @Test
     void getLogsTest() {
         ArrayList<Log> logArr = new ArrayList<>();
@@ -44,12 +45,14 @@ public class LogUtilTest {
                 .isEqualTo(LogUtil.getLogs());
     }
 
+    @Tag("RUN")
     @Test
     void createNullClassTest() {
         assertThrows(IllegalArgumentException.class,
                 () -> LogUtil.create(null, Level.INFO, "test", null));
     }
 
+    @Tag("RUN")
     @Test
     void createTest() {
         Log log = new Log("Lector", Level.DEBUG, "test2", null);
@@ -58,6 +61,7 @@ public class LogUtilTest {
                         .substring(0, 19));
     }
 
+    @Tag("RUN")
     @Test
     void createCorrectDataTest() {
         Log tempLog;
@@ -73,6 +77,7 @@ public class LogUtilTest {
                 .hasSize(target.getLogs().size());
     }
 
+    @Tag("RUN")
     @Test
     void createCorrectListDataTest() {
         Log tempLog;
@@ -88,11 +93,15 @@ public class LogUtilTest {
                 .ignoringCollectionOrder()
                 .isEqualTo(target.getLogs());
     }
+
+    @Tag("SKIP")
     @Test
     void addNullLogTest(){
         assertThat(LogUtil.outerAddLog(null))
                 .isFalse();
     }
+
+    @Tag("SKIP")
     @Test
     void addLogTest(){
         assertThat(LogUtil.outerAddLog(new Log("Lector7",
