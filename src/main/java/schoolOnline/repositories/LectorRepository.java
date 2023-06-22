@@ -6,6 +6,9 @@ import schoolOnline.entities.Lecture;
 import java.util.Arrays;
 
 public class LectorRepository {
+/*    LectorRepository(Lector [] lectorArray){
+        this.lectorRepository = lectorArray;
+    }*/
     public static Lector[] lectorRepository = new Lector[16];
     public static void addLector(Lector lector){
         if(!checkSpace()){
@@ -53,6 +56,17 @@ public class LectorRepository {
                 result = result +  "At course with id " + lectorRepository[i].getCourseId() +
                         ", and lecture id " + lectorRepository[i].getLectureId() +
                         " lector is " + lectorRepository[i].getName() + ".\n";
+            }
+        }
+        return result;
+    }
+    public static String allLectors2(){
+        String result = "All lectors are:\n";
+        for(int i = 0; i < lectorRepository.length; i++){
+            if (lectorRepository[i] != null){
+                result = result +  "At course with id " + lectorRepository[i].getCourseId() +
+                        " lector is " + lectorRepository[i].getName() +
+                        " "+ lectorRepository[i].getLastname() + ".\n";
             }
         }
         return result;

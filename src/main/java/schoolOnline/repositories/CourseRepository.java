@@ -10,6 +10,9 @@ public class CourseRepository implements CourseRepositoryMeth {
     public CourseRepository(int capacity){
         this.courseRepository = new Course[capacity];
     }
+    public CourseRepository(Course[] courseRepository){
+        this.courseRepository = courseRepository;
+    }
     public Course[] courseRepository;
     public void addCourse(Course course){
         if(!checkSpace()){

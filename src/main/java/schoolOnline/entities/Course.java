@@ -16,6 +16,22 @@ public class Course implements Comparable<Course>, Serializable {
         this.lectureRepository = new LectureRepository();
         this.studentRepository = new StudentRepository();
     }
+    public Course(int id, String name){
+        this.id = ++courseCount;
+        this.name = name;
+        this.lector = new Lector("BigBoss");
+        this.lectureRepository = new LectureRepository();
+        this.studentRepository = new StudentRepository();
+    }
+    public Course(int id, String name, int studentNumber){
+        ++courseCount;
+        this.id = id;
+        this.name = name;
+        this.studentNumber = studentNumber;
+        this.lectureRepository = new LectureRepository();
+        this.studentRepository = new StudentRepository();
+    }
+
     private Integer id;
     public String commonName;
     public void setId(Integer id){

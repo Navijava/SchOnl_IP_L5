@@ -11,6 +11,86 @@ import java.util.stream.Collectors;
 public class Service {
 
     static String bound = "\n__________________________________________________________________\n";
+
+      public static void lesson46() {
+
+        List<Course> courseList = CloudRepository.getCourseList();
+        Course[] courseArray = courseList.toArray(new Course[]{});
+        List<Lecture> lectureList = CloudRepository.getLectureList();
+        List<Lector> lectorList = CloudRepository.getLectorList();
+        LectorRepository.lectorRepository = lectorList.toArray(new Lector[]{});
+        for(int i = 0; i < lectureList.size(); i++){
+            for(int j = 0; j < lectorList.size(); j++){
+                if(lectureList.get(i).getLectorId() == lectorList.get(j).getLectorId()){
+                    lectureList.get(i).setLector(lectorList.get(j));
+                    continue;
+                }
+            }
+        }
+        for(int i = 0; i < lectureList.size(); i++){
+            for(int j = 0; j < courseArray.length; j++){
+                if(lectureList.get(i).getCourseId() == courseArray[j].getId()){
+                    lectureList.get(i).setName(courseArray[j].getName());
+                    courseArray[j].getLectureRepository().add(lectureList.get(i));
+                    continue;
+                }
+            }
+        }
+        CourseRepository courseRepository = new CourseRepository(courseArray);
+
+        //CourseRepository courseRepository = LectureUtil.lectureLimitedCreate_Lesson10r(8);
+        Scanner scan1 = new Scanner(System.in);
+        Scanner scan2 = new Scanner(System.in);
+        int answer = 0;
+        while(true) {
+            do {
+                System.out.println("What information do you want to find: \n1. Course. \n2. Lecture. \n3. Lector. "
+                        + "\nEnter number and press \"Enter\"");
+                try {
+                    answer = scan1.nextInt();
+                } catch(Exception e){
+                    System.out.println("Wrong symbol. Try again.");
+                    scan1 = new Scanner(System.in);
+                }
+            } while (answer < 1 || answer > 3);
+            switch (answer) {
+                case 1:
+
+                    for (int i = 0; i < courseRepository.courseRepository.length; i++) {
+                        System.out.println("Number of lectures in course with id " + (i + 1) + " is " +
+                                courseRepository.courseRepository[i].getLectureRepository().getLectureAddedCount() + ".");
+                    }
+                    System.out.println("Enter id of the course to see information about course (list of lectures id).");
+                    int chosenCourseId = scan1.nextInt();
+                    System.out.println("You choose course with id " + chosenCourseId + ". "
+                            + courseRepository.courseRepository[chosenCourseId - 1]);
+                    courseRepository.courseRepository[chosenCourseId - 1].getLectureRepository().showAllId();
+                    break;
+
+                case 2:
+
+                    System.out.println("Information about all available lectures in all courses:");
+                    courseRepository.print();
+                    break;
+
+                case 3:
+
+                    System.out.println(LectorRepository.allLectors2());
+                    break;
+
+                default:
+
+                    System.out.println("No information.");
+
+            }
+
+            System.out.println("To stop enter \"n\", to continue enter whatever you want.");
+            if (scan2.nextLine().equals("n")){
+                break;
+            }
+
+        }
+    }
     public static void lesson24_main(){
 
         ArrayList<String> logLevel = LogService.readLogs("src/schoolOnline/logLevel.data");

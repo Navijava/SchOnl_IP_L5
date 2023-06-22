@@ -1,17 +1,13 @@
 package schoolOnline;
 
-import schoolOnline.entities.Lector;
-import schoolOnline.entities.Role;
-import schoolOnline.entities.SuperEn;
 import schoolOnline.entitiesUtils.Service;
-import schoolOnline.repositories.LectorRepository;
-import schoolOnline.repositories.HomeworkRepository;
-import schoolOnline.repositories.AdditionalMaterialRepository;
-
-import java.util.Arrays;
+import schoolOnline.entitiesUtils.Temp;
+import schoolOnline.repositories.CloudRepository;
 
 public class Main {
     public static void main(String [] arg){
+
+        Service.lesson46();
 
         /*SuperEn superEn = new SuperEn();
         superEn.getId();
@@ -25,7 +21,7 @@ public class Main {
 
         // Temp.temp();
 
-        Service.logAtLast();
+        //Service.logAtLast();
 
         // Service.streamsPart1(); // err
 
@@ -39,7 +35,7 @@ public class Main {
 
         // Service.threads();
 
-        // Service.findInfo();
+        //Service.findInfo();
 
         // Service.sortEverything();
 

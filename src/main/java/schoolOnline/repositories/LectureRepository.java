@@ -53,8 +53,9 @@ public class LectureRepository implements LectureRepositoryMeth, Iterable, Seria
         for (int i = 0; i < lectureRepository.size(); i++){
             if(lectureRepository.get(i) != null) {
                 result = result + "lecture's id - " + + lectureRepository.get(i).getId()
-                        + ", and name - " + lectureRepository.get(i).getName()
-                        + ", and lector's name " + lectureRepository.get(i).getLector().getName() + "\n";
+                        + ", lecture's name - " + lectureRepository.get(i).getName()
+                        + ", and lector's name " + lectureRepository.get(i).getLector().getName()
+                        + " " + lectureRepository.get(i).getLector().getLastname() + "\n";
             }
         }
         if (result.equals("")) {
