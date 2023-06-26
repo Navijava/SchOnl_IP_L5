@@ -2,12 +2,14 @@ package schoolOnline;
 
 import schoolOnline.entitiesUtils.Service;
 import schoolOnline.entitiesUtils.Temp;
-import schoolOnline.repositories.CloudRepository;
+import schoolOnline.entitiesUtils.Temp47;
 
 public class Main {
     public static void main(String [] arg){
 
-        Service.lesson46();
+        Service.lesson47();
+
+        //Service.lesson46();
 
         /*SuperEn superEn = new SuperEn();
         superEn.getId();

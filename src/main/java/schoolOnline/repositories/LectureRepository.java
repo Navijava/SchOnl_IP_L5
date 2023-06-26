@@ -4,7 +4,6 @@ import schoolOnline.entities.Lecture;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 public class LectureRepository implements LectureRepositoryMeth, Iterable, Serializable {
     protected int lectureAddedCount = 0;
@@ -53,8 +52,8 @@ public class LectureRepository implements LectureRepositoryMeth, Iterable, Seria
         for (int i = 0; i < lectureRepository.size(); i++){
             if(lectureRepository.get(i) != null) {
                 result = result + "lecture's id - " + + lectureRepository.get(i).getId()
-                        + ", lecture's name - " + lectureRepository.get(i).getName()
-                        + ", and lector's name " + lectureRepository.get(i).getLector().getName()
+                        + ", lecture's name - \"" + lectureRepository.get(i).getLectureName()
+                        + "\", and lector's name " + lectureRepository.get(i).getLector().getName()
                         + " " + lectureRepository.get(i).getLector().getLastname() + "\n";
             }
         }

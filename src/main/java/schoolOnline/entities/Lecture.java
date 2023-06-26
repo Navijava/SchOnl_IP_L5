@@ -66,6 +66,7 @@ public class Lecture implements Serializable {
     private ArrayList<String> loggerRead;
     private Integer id;
     private String name;
+    private String lectureName;
     private String creationDate;
     private int lectorId;
     public int getLectorId(){
@@ -103,6 +104,12 @@ public class Lecture implements Serializable {
     private String courseName;
     public String getCourseName(){
         return this.courseName;
+    }
+    public void setLectureName(String lectureName){
+        this.lectureName = lectureName;
+    }
+    public String getLectureName(){
+        return this.lectureName;
     }
     private Lector lector;
     /*public void addHomework(Homework homework){
