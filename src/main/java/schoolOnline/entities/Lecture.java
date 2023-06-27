@@ -19,6 +19,21 @@ public class Lecture implements Serializable {
         this.id = ++lectureCount;
         date();
     }
+    public Lecture(int courseId, int lecture_id, int lector_id, String date){
+        ++lectureCount;
+        this.courseId = courseId;
+        this.id = lecture_id;
+        this.lectorId = lector_id;
+        this.lector = new Lector(Role.LECTOR, courseId, id);
+        homeworkArr = new Homework[16];
+        AdditionalMaterialUtil.generate(this.id);
+        HomeworkUtil.generate(this.id);
+        this.homeworkRepository = new HomeworkRepository();
+        this.additionalMaterialRepository = new AdditionalMaterialRepository();
+        date();
+        this.lectureDate = date;
+        this.creationDate = LogUtil.create("Lecture", Level.INFO, "lecture created", null);
+    }
     public Lecture(int courseId){
         this.courseId = courseId;
         this.id = ++lectureCount;
@@ -52,6 +67,10 @@ public class Lecture implements Serializable {
     private Integer id;
     private String name;
     private String creationDate;
+    private int lectorId;
+    public int getLectorId(){
+        return this.lectorId;
+    }
     public String getCreationDate(){
         return this.creationDate;
     }

@@ -21,7 +21,6 @@ public class Lector implements Comparable<Lector>, Serializable {
         this.lastname = lastname;
     }
     public Lector(Role role, int courseId, int lectureId){
-
         this.role = role;
         this.courseId = courseId;
         lectorCount++;
@@ -29,6 +28,15 @@ public class Lector implements Comparable<Lector>, Serializable {
         rndChoosingName.nextInt();
         setName((TempNames.getTempName(new Random().nextInt(1, 5))).name());
         this.lectureId = lectureId;
+        LectorRepository.addLector(this);
+    }
+    public Lector(Role role, int courseId, int lectorId, String name, String lastname){
+        lectorCount++;
+        this.role = role;
+        this.courseId = courseId;
+        this.lectorId = lectorId;
+        this.name = name;
+        this.lastname = lastname;
         LectorRepository.addLector(this);
     }
 
@@ -45,7 +53,10 @@ public class Lector implements Comparable<Lector>, Serializable {
     private Role role;
     private int courseId;
 
-    private Integer id;
+    private Integer lectorId;
+    public int getLectorId(){
+        return this.lectorId;
+    }
 
     public void setFirstname(String firstname){
         this.firstname = firstname;
