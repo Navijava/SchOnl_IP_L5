@@ -12,7 +12,138 @@ public class Service {
 
     static String bound = "\n__________________________________________________________________\n";
 
-      public static void lesson46() {
+    public static void lesson47() {
+
+        List<Course> courseList = CloudRepository47.getCourseList();
+        Course[] courseArray = courseList.toArray(new Course[]{});
+        List<Lecture> lectureList = CloudRepository47.getLectureList();
+        List<Lector> lectorList = CloudRepository47.getLectorList();
+        LectorRepository.lectorRepository = lectorList.toArray(new Lector[]{});
+        for(int i = 0; i < lectureList.size(); i++){
+            for(int j = 0; j < lectorList.size(); j++){
+                if(lectureList.get(i).getLectorId() == lectorList.get(j).getLectorId()){
+                    lectureList.get(i).setLector(lectorList.get(j));
+                    continue;
+                }
+            }
+        }
+        for(int i = 0; i < lectureList.size(); i++){
+            for(int j = 0; j < courseArray.length; j++){
+                if(lectureList.get(i).getCourseId() == courseArray[j].getId()){
+                    lectureList.get(i).setName(courseArray[j].getName());
+                    courseArray[j].getLectureRepository().add(lectureList.get(i));
+                    continue;
+                }
+            }
+        }
+        CourseRepository courseRepository = new CourseRepository(courseArray);
+
+        //CourseRepository courseRepository = LectureUtil.lectureLimitedCreate_Lesson10r(8);
+        Scanner scan1 = new Scanner(System.in);
+        Scanner scan2 = new Scanner(System.in);
+        int answer = 0;
+        while(true) {
+            do {
+                System.out.println("What information do you want to find: \n1. Course. \n2. Lecture. \n3. Lector. "
+                        + "\n4. Student. \n5. All information about course and available lectures. "
+                        + "\n6. Find lecture by id.\nEnter number and press \"Enter\"");
+                try {
+                    answer = scan1.nextInt();
+                } catch(Exception e){
+                    System.out.println("Wrong symbol. Try again.");
+                    scan1 = new Scanner(System.in);
+                }
+            } while (answer < 1 || answer > 9);
+            switch (answer) {
+                case 1:
+
+                    for (int i = 0; i < courseRepository.courseRepository.length; i++) {
+                        System.out.println("Number of lectures in course with id " + (i + 1) + " is " +
+                                courseRepository.courseRepository[i].getLectureRepository().getLectureAddedCount() + ".");
+                    }
+                    System.out.println("Enter id of the course to see information about course (list of lectures id).");
+                    int chosenCourseId = scan1.nextInt();
+                    System.out.println("You choose course with id " + chosenCourseId + ". "
+                            + courseRepository.courseRepository[chosenCourseId - 1]);
+                    courseRepository.courseRepository[chosenCourseId - 1].getLectureRepository().showAllId();
+                    break;
+
+                case 2:
+
+                    System.out.println("Information about all available lectures in all courses:");
+                    courseRepository.print();
+                    break;
+
+                case 3:
+
+                    System.out.println(LectorRepository.allLectors2());
+                    break;
+
+                case 4:
+
+                    boolean flag = true;
+                    System.out.println("Enter id of course to find out information about students.");
+                    int studentCourseId = scan1.nextInt();
+                    for(int i = 0; i < courseArray.length; i++){
+                        if(studentCourseId == courseArray[i].getId()){
+                            System.out.println("Number of students on chosen course is -- "
+                                    + courseArray[i].getStudentNumber() + ".");
+                            flag = false;
+                            break;
+                        }
+                    }
+                    if(flag) {
+                        System.out.println("There is no information about course with chosen id.");
+                    }
+                    break;
+
+                case 5:
+
+                    System.out.println("All information about course and available lectures:");
+                    for (int i = 0; i < courseRepository.courseRepository.length; i++) {
+                        System.out.println("Number of lectures in course with id " + (i + 1) + " is "
+                                + courseRepository.courseRepository[i].getLectureRepository().getLectureAddedCount() + ".");
+                    }
+                    System.out.println("Information about all available lectures in all courses:");
+                    for (int i = 0; i < courseRepository.courseRepository.length; i++) {
+                        if (courseRepository.courseRepository[i].getLectureRepository().getAll().size() != 0) {
+                            System.out.println("Course id - " + (i + 1) + ", and its lectures:");
+                            courseRepository.courseRepository[i].getLectureRepository().showAllId();
+                        }
+                    }
+                    break;
+
+                case 6:
+
+                    System.out.println("Enter lecture id to find needed lecture.");
+                    try {
+                        int wantedLectureId = scan1.nextInt();
+                        if (courseRepository.getById(wantedLectureId) == null) {
+                            throw new EntityNotFoundException();
+                        }
+                        System.out.println("Information about wanted lecture: \nLecture's course id is - "
+                                + courseRepository.getById(wantedLectureId).getCourseId() + ",\n Lecture's name is - \""
+                                + courseRepository.getById(wantedLectureId).getLectureName() + "\".");
+                    } catch (EntityNotFoundException e) {
+                        System.out.println(e + "\n" + e.getMessage());
+                    }
+                    break;
+
+                default:
+
+                    System.out.println("No information.");
+
+            }
+
+            System.out.println("To stop enter \"n\", to continue enter whatever you want.");
+            if (scan2.nextLine().equals("n")){
+                break;
+            }
+
+        }
+    }
+
+    public static void lesson46() {
 
         List<Course> courseList = CloudRepository.getCourseList();
         Course[] courseArray = courseList.toArray(new Course[]{});

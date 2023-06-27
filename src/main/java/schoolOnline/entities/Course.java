@@ -43,9 +43,13 @@ public class Course implements Comparable<Course>, Serializable {
 
     private static int courseCount;
     private String name;
-    private int studentNumber = Student.getStudentCount();
-    private int lectorNumber = Lector.getLectorCount();
-    private int lectureNumber = Lecture.getLectureCount();
+    private int studentNumber;
+    public int getStudentNumber(){
+        return this.studentNumber;
+    }
+    // = Student.getStudentCount();
+    //private int lectorNumber = Lector.getLectorCount();
+    //private int lectureNumber = Lecture.getLectureCount();
     private Lector lector;
     public Lector getLector(){
         return this.lector;
