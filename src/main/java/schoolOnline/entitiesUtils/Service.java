@@ -12,6 +12,8 @@ public class Service {
 
     static String bound = "\n__________________________________________________________________\n";
 
+
+
     public static void lesson47() {
 
         List<Course> courseList = CloudRepository47.getCourseList();

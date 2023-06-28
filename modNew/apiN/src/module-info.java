@@ -1,3 +1,0 @@
-module apiN {
-    exports consol;
-}
