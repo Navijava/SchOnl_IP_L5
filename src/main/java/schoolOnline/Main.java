@@ -1,13 +1,11 @@
 package schoolOnline;
 
-import schoolOnline.entitiesUtils.Service;
-import schoolOnline.entitiesUtils.Temp47;
-import schoolOnline.entitiesUtils.Temp49;
+import schoolOnline.entitiesUtils.Temp48;
 
 public class Main {
     public static void main(String [] arg){
 
-        Temp49.temp49();
+        Temp48.temp48();
 
         //Temp47.temp47();
 
