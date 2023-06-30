@@ -117,7 +117,7 @@ public class Lector implements Comparable<Lector>, Serializable {
         /*return (role == Role.STUDENT) ? "Student is studying at course with id " + this.courseId + ".":
                 (role == Role.LECTOR) ? "Lector is teaching at course with id " + this.courseId + ".":
                         "Peron is unknown at course with id " + this.courseId + ".";*/
-        return "\nLector's lastname is " + lastname;
+        return "Lector full name is: " + name + " " + lastname;
     }
 
     /*public String toString(){

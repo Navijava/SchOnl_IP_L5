@@ -5,7 +5,7 @@ import schoolOnline.entitiesUtils.Service;
 public class Main {
     public static void main(String [] arg){
 
-        Service.lesson47();
+        //Service.lesson47();
 
         //Service.lesson46();
 
