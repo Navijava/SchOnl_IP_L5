@@ -8,10 +8,8 @@
     <artifactId>SchOnl_IP</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-<!--
-    <name>SchOnl_IP</name>
-    <packaging>war</packaging>
--->
+<!--<name>SchOnl_IP</name>
+    <packaging>war</packaging>-->
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
