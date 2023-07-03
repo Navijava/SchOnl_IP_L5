@@ -14,6 +14,7 @@ public class WebCourse extends HttpServlet {
         out.println("<html><body>");
         CloudRepository47.getCourseList().forEach(lector -> out.println("<h1>" + lector + "</h1>"));
         out.println("<br/><a href=\"webCourseGet\">Get course by id.</a>");
+        out.println("<br/><a href=\"webCourseForm\">New course form.</a>");
         out.println("<br/><a href=\"webMain\">Return to main.</a>");
         out.println("</body></html>");
         out.close();

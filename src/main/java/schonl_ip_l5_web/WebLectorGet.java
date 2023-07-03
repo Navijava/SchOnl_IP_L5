@@ -34,6 +34,7 @@ public class WebLectorGet extends HttpServlet {
         } else {
             writer.println("<h2>" + tempLector + "</h2>");
         }
+        writer.println("<br/><a href=\"webLector\">Back.</a>");
         writer.close();
     }
 }

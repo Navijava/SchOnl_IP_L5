@@ -14,9 +14,11 @@ public class WebMain extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
-        out.println("<a href=\"webCourse\">Our courses.</a><br/>");
-        out.println("<a href=\"webLector\">Our Lectors.</a><br/>");
-        out.println("<a href=\"webLecture\">Our Lectures.</a><br/>");
+        out.println("<a href=\"webCourse\">Our courses.</a><br/><br/>");
+        out.println("<a href=\"webLector\">Our Lectors.</a><br/><br/>");
+        out.println("<a href=\"webLecture\">Our Lectures.</a><br/><br/>");
+        out.println("<a href=\"webStudent\">Our Students.</a><br/><br/>");
+        out.println("<a href=\"webAddMat\">Our additional material.</a><br/><br/>");
         out.println("</body></html>");
     }
 

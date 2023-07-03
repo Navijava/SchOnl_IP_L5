@@ -69,6 +69,20 @@ public class Lecture implements Serializable {
     private String lectureName;
     private String creationDate;
     private int lectorId;
+    private int addMatQuantity;
+    private int homeworkQuantity;
+    public void setHomeworkQuantity(int homeworkQuantity){
+        this.homeworkQuantity = homeworkQuantity;
+    }
+    public int getHomeworkQuantity(){
+        return this.homeworkQuantity;
+    }
+    public void setAddMatQuantity(int addMatQuantity){
+        this.addMatQuantity = addMatQuantity;
+    }
+    public int getAddMatQuantity(){
+        return this.addMatQuantity;
+    }
     public int getLectorId(){
         return this.lectorId;
     }

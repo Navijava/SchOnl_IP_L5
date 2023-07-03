@@ -23,11 +23,22 @@ public class Student implements Comparable<Student>, Serializable {
     private String lastname;
     private String phone;
     private String email;
-
     private Role role;
     private int courseId;
-
-    private Integer id;
+    private int studentId;
+    private int courseQuantity;
+    public void setCourseQuantity(int courseQuantity){
+        this.courseQuantity = courseQuantity;
+    }
+    public int getCourseQuantity(){
+        return this.courseQuantity;
+    }
+    public void setStudentId(int studentId){
+        this.studentId = studentId;
+    }
+    public int getStudentId(){
+        return this.studentId;
+    }
 
     public void setFirstname(String firstname){
         this.firstname = firstname;
@@ -91,7 +102,7 @@ public class Student implements Comparable<Student>, Serializable {
                         "Peron is unknown at course with id " + this.courseId + ".";*/
         //return "\nStudent's name is " + name + ".";
         //return "\nStudent's lastname is " + lastname + ".";
-        return lastname;
+        return lastname + " " + firstname;
     }
     public int compareTo(Student student){
         return this.lastname.compareTo(student.lastname);
