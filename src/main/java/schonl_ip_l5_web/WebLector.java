@@ -14,6 +14,8 @@ public class WebLector extends HttpServlet {
         out.println("<html><body>");
         CloudRepository47.getLectorList().forEach(lector -> out.println("<h1>" + lector + "</h1>"));
         out.println("<br/><a href=\"webLectorGet\">Get lector by id.</a>");
+        out.println("<br/><a href=\"webLectorSort\">Get lector after sort.</a>");
+        out.println("<br/><a href=\"webLectorForm\">New lector form.</a>");
         out.println("<br/><a href=\"webMain\">Return to main.</a>");
         out.println("</body></html>");
         out.close();
